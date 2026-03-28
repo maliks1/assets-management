@@ -73,18 +73,6 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" 
-                                  id="deskripsi" 
-                                  name="deskripsi" 
-                                  rows="3" 
-                                  placeholder="Deskripsi produk (opsional)">{{ old('deskripsi', $product->deskripsi) }}</textarea>
-                        @error('deskripsi')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label for="stok_saat_ini" class="form-label">
@@ -100,23 +88,6 @@
                             @error('stok_saat_ini')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <label for="stok_minimum" class="form-label">
-                                Stok Minimum <span class="text-danger">*</span>
-                            </label>
-                            <input type="number" 
-                                   class="form-control @error('stok_minimum') is-invalid @enderror" 
-                                   id="stok_minimum" 
-                                   name="stok_minimum" 
-                                   value="{{ old('stok_minimum', $product->stok_minimum) }}" 
-                                   min="0"
-                                   required>
-                            @error('stok_minimum')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <div class="form-text">Batas minimum sebelum peringatan</div>
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -211,23 +182,6 @@
             </div>
         </div>
 
-        <div class="card mt-3">
-            <div class="card-header">
-                <h5 class="card-title mb-0">
-                    <i class="bi bi-exclamation-triangle"></i> Perhatian
-                </h5>
-            </div>
-            <div class="card-body">
-                <div class="alert alert-warning">
-                    <h6 class="alert-heading">Peringatan:</h6>
-                    <ul class="mb-0">
-                        <li>Perubahan kode barang akan mempengaruhi semua transaksi terkait</li>
-                        <li>Stok saat ini sebaiknya diubah melalui transaksi masuk/keluar</li>
-                        <li>Produk dengan riwayat transaksi tidak dapat dihapus</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 @endsection
