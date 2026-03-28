@@ -165,28 +165,30 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="sub_category" class="form-label">Sub Kategori</label>
-                            <input type="text" 
-                                   class="form-control @error('sub_category') is-invalid @enderror" 
-                                   id="sub_category" 
-                                   name="sub_category" 
-                                   value="{{ old('sub_category', $product->sub_category) }}" 
-                                   placeholder="Contoh: Elektronik, Furniture">
+                            <label for="sub_category" class="form-label">Sub Kategori <span class="text-danger">*</span></label>
+                            <select class="form-select @error('sub_category') is-invalid @enderror" 
+                                    id="sub_category" 
+                                    name="sub_category" 
+                                    required>
+                                <option value="proyek" {{ old('sub_category', $product->sub_category) == 'proyek' ? 'selected' : '' }}>Proyek</option>
+                                <option value="kantor" {{ old('sub_category', $product->sub_category) == 'kantor' ? 'selected' : '' }}>Kantor</option>
+                            </select>
                             @error('sub_category')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            <div class="form-text">Pilih kategori sub untuk produk ini</div>
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="project_name" class="form-label">Nama Proyek</label>
+                    <div class="mb-3" id="no_proyek_container" style="display: none;">
+                        <label for="no_proyek" class="form-label">No Proyek</label>
                         <input type="text" 
-                               class="form-control @error('project_name') is-invalid @enderror" 
-                               id="project_name" 
-                               name="project_name" 
-                               value="{{ old('project_name', $product->project_name) }}" 
-                               placeholder="Nama proyek terkait (opsional)">
-                        @error('project_name')
+                               class="form-control @error('no_proyek') is-invalid @enderror" 
+                               id="no_proyek" 
+                               name="no_proyek" 
+                               value="{{ old('no_proyek', $product->no_proyek) }}" 
+                               placeholder="Nomor proyek terkait">
+                        @error('no_proyek')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -371,9 +373,13 @@
 
 <script>
 // Show/hide depreciation section based on category type
+// Show/hide no_proyek field based on sub_category
 document.addEventListener('DOMContentLoaded', function() {
     const categoryTypeSelect = document.getElementById('category_type');
     const depreciationSection = document.getElementById('depreciation-section');
+    const subCategorySelect = document.getElementById('sub_category');
+    const noProyekContainer = document.getElementById('no_proyek_container');
+    const noProyekInput = document.getElementById('no_proyek');
     
     function toggleDepreciationSection() {
         if (categoryTypeSelect.value === 'perlengkapan') {
@@ -387,10 +393,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    categoryTypeSelect.addEventListener('change', toggleDepreciationSection);
+    function toggleNoProyekField() {
+        if (subCategorySelect.value === 'proyek') {
+            noProyekContainer.style.display = 'block';
+            noProyekInput.setAttribute('required', 'required');
+        } else {
+            noProyekContainer.style.display = 'none';
+            noProyekInput.removeAttribute('required');
+            noProyekInput.value = ''; // Clear the value when hidden
+        }
+    }
     
-    // Initial check
+    categoryTypeSelect.addEventListener('change', toggleDepreciationSection);
+    subCategorySelect.addEventListener('change', toggleNoProyekField);
+    
+    // Initial checks
     toggleDepreciationSection();
+    toggleNoProyekField();
 });
 </script>
 @endsection
