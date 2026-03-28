@@ -49,14 +49,6 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label for="catatan" class="form-label">Catatan (Opsional)</label>
-                        <input type="text" class="form-control @error('catatan') is-invalid @enderror" id="catatan" name="catatan" value="{{ old('catatan') }}">
-                        @error('catatan')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
                     <div class="d-flex justify-content-end gap-2">
                         <a href="{{ route('products.index') }}" class="btn btn-secondary">
                             <i class="bi bi-x-circle"></i> Batal
