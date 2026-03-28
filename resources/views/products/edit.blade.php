@@ -154,8 +154,8 @@
                                     id="category_type" 
                                     name="category_type" 
                                     required>
-                                <option value="persediaan" {{ old('category_type', $product->category_type) == 'persediaan' ? 'selected' : '' }}>Persediaan (Supplies)</option>
-                                <option value="perlengkapan" {{ old('category_type', $product->category_type) == 'perlengkapan' ? 'selected' : '' }}>Perlengkapan (Inventory)</option>
+                                <option value="persediaan" {{ old('category_type', $product->category_type) == 'persediaan' ? 'selected' : '' }}>Persediaan (Inventory)</option>
+                                <option value="perlengkapan" {{ old('category_type', $product->category_type) == 'perlengkapan' ? 'selected' : '' }}>Perlengkapan (Supplies)</option>
                                 <option value="peralatan" {{ old('category_type', $product->category_type) == 'peralatan' ? 'selected' : '' }}>Peralatan (Equipment)</option>
                             </select>
                             @error('category_type')
