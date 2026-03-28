@@ -26,7 +26,7 @@ class Product extends Model
         'harga',
         'category_type',
         'sub_category',
-        'project_name',
+        'no_proyek',
         'acquisition_date',
         'useful_life_years',
         'salvage_value',

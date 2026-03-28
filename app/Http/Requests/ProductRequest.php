@@ -35,7 +35,7 @@ class ProductRequest extends FormRequest
             // Category fields
             'category_type' => 'required|in:persediaan,perlengkapan',
             'sub_category' => 'nullable|string|max:255',
-            'project_name' => 'nullable|string|max:255',
+            'no_proyek' => 'nullable|string|max:255',
             
             // Depreciation fields (only required for perlengkapan/equipment)
             'acquisition_date' => 'nullable|date',

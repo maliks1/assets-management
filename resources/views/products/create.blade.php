@@ -196,14 +196,14 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="project_name" class="form-label">Nama Proyek</label>
+                        <label for="no_proyek" class="form-label">Nomor Proyek</label>
                         <input type="text" 
-                               class="form-control @error('project_name') is-invalid @enderror" 
-                               id="project_name" 
-                               name="project_name" 
-                               value="{{ old('project_name') }}" 
-                               placeholder="Nama proyek terkait (opsional)">
-                        @error('project_name')
+                               class="form-control @error('no_proyek') is-invalid @enderror" 
+                               id="no_proyek" 
+                               name="no_proyek" 
+                               value="{{ old('no_proyek') }}" 
+                               placeholder="Nomor proyek terkait (opsional)">
+                        @error('no_proyek')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
