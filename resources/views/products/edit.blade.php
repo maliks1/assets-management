@@ -6,10 +6,10 @@
 <div class="row">
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 mb-0">Edit Produk</h1>
+            {{-- <h1 class="h3 mb-0">Edit Produk</h1>
             <a href="{{ route('products.index') }}" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Kembali
-            </a>
+            </a> --}}
         </div>
     </div>
 </div>
@@ -39,7 +39,7 @@
                     @method('PUT')
                     
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="kode_barang" class="form-label">
                                 Kode Barang <span class="text-danger">*</span>
                             </label>
@@ -53,10 +53,9 @@
                             @error('kode_barang')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="form-text">Kode unik untuk mengidentifikasi produk</div>
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="nama_barang" class="form-label">
                                 Nama Barang <span class="text-danger">*</span>
                             </label>
@@ -71,10 +70,43 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="harga" class="form-label">
+                                Harga Satuan
+                            </label>
+                            <input type="number" 
+                                   class="form-control @error('harga') is-invalid @enderror" 
+                                   id="harga" 
+                                   name="harga" 
+                                   value="{{ old('harga', $product->harga) }}" 
+                                   min="0"
+                                   step="0.01">
+                            @error('harga')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
+                            <label for="stok_minimum" class="form-label">
+                                Stok Minimum <span class="text-danger">*</span>
+                            </label>
+                            <input type="number" 
+                                   class="form-control @error('stok_minimum') is-invalid @enderror" 
+                                   id="stok_minimum" 
+                                   name="stok_minimum" 
+                                   value="{{ old('stok_minimum', $product->stok_minimum) }}" 
+                                   min="0"
+                                   required>
+                            @error('stok_minimum')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            {{-- <div class="form-text">Batas minimum sebelum peringatan</div> --}}
+                        </div>
+
+                        <div class="col-md-3 mb-3">
                             <label for="stok_saat_ini" class="form-label">
                                 Stok Saat Ini <span class="text-danger">*</span>
                             </label>
@@ -90,7 +122,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="satuan" class="form-label">
                                 Satuan <span class="text-danger">*</span>
                             </label>
@@ -110,23 +142,138 @@
                         </div>
                     </div>
 
+                    <!-- Category Section -->
+                    <h5 class="mb-3"><i class="bi bi-folder"></i> Kategori Produk</h5>
+                    
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="harga" class="form-label">
-                                Harga Satuan
+                            <label for="category_type" class="form-label">
+                                Tipe Kategori <span class="text-danger">*</span>
                             </label>
-                            <input type="number" 
-                                   class="form-control @error('harga') is-invalid @enderror" 
-                                   id="harga" 
-                                   name="harga" 
-                                   value="{{ old('harga', $product->harga) }}" 
-                                   min="0"
-                                   step="0.01">
-                            @error('harga')
+                            <select class="form-select @error('category_type') is-invalid @enderror" 
+                                    id="category_type" 
+                                    name="category_type" 
+                                    required>
+                                <option value="persediaan" {{ old('category_type', $product->category_type) == 'persediaan' ? 'selected' : '' }}>Persediaan (Supplies)</option>
+                                <option value="perlengkapan" {{ old('category_type', $product->category_type) == 'perlengkapan' ? 'selected' : '' }}>Perlengkapan (Inventory)</option>
+                                <option value="peralatan" {{ old('category_type', $product->category_type) == 'peralatan' ? 'selected' : '' }}>Peralatan (Equipment)</option>
+                            </select>
+                            @error('category_type')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="form-text">Harga per satuan (opsional)</div>
+                            <div class="form-text">Pilih tipe produk</div>
                         </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="sub_category" class="form-label">Sub Kategori</label>
+                            <input type="text" 
+                                   class="form-control @error('sub_category') is-invalid @enderror" 
+                                   id="sub_category" 
+                                   name="sub_category" 
+                                   value="{{ old('sub_category', $product->sub_category) }}" 
+                                   placeholder="Contoh: Elektronik, Furniture">
+                            @error('sub_category')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="project_name" class="form-label">Nama Proyek</label>
+                        <input type="text" 
+                               class="form-control @error('project_name') is-invalid @enderror" 
+                               id="project_name" 
+                               name="project_name" 
+                               value="{{ old('project_name', $product->project_name) }}" 
+                               placeholder="Nama proyek terkait (opsional)">
+                        @error('project_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Depreciation Section (for Equipment only) -->
+                    <div id="depreciation-section" class="mt-4" style="display: none;">
+                        <hr class="my-4">
+                        <h5 class="mb-3"><i class="bi bi-calculator"></i> Depresiasi</h5>
+                        
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> <strong>Info:</strong> Depresiasi hanya berlaku untuk produk dengan tipe "Perlengkapan/Equipment". Gunakan metode garis lurus.
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="acquisition_date" class="form-label">Tanggal Perolehan</label>
+                                <input type="date" 
+                                       class="form-control @error('acquisition_date') is-invalid @enderror" 
+                                       id="acquisition_date" 
+                                       name="acquisition_date" 
+                                       value="{{ old('acquisition_date', $product->acquisition_date?->format('Y-m-d')) }}">
+                                @error('acquisition_date')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text">Tanggal barang/equipment diperoleh</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="useful_life_years" class="form-label">Masa Manfaat (Tahun)</label>
+                                <input type="number" 
+                                       class="form-control @error('useful_life_years') is-invalid @enderror" 
+                                       id="useful_life_years" 
+                                       name="useful_life_years" 
+                                       value="{{ old('useful_life_years', $product->useful_life_years) }}" 
+                                       min="1"
+                                       max="50">
+                                @error('useful_life_years')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text">Estimasi masa manfaat dalam tahun</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="salvage_value" class="form-label">Nilai Sisa (Salvage Value)</label>
+                                <input type="number" 
+                                       class="form-control @error('salvage_value') is-invalid @enderror" 
+                                       id="salvage_value" 
+                                       name="salvage_value" 
+                                       value="{{ old('salvage_value', $product->salvage_value ?? 0) }}" 
+                                       min="0"
+                                       step="0.01">
+                                @error('salvage_value')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text">Nilai residu di akhir masa manfaat</div>
+                            </div>
+                        </div>
+
+                        @if($product->accumulated_depreciation > 0)
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="alert alert-secondary">
+                                    <h6 class="alert-heading"><i class="bi bi-graph-up"></i> Status Depresiasi Saat Ini</h6>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <small><strong>Depresiasi Terakumulasi:</strong></small><br>
+                                            <span class="text-primary">Rp {{ number_format($product->accumulated_depreciation, 0, ',', '.') }}</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <small><strong>Nilai Buku:</strong></small><br>
+                                            <span class="text-success">Rp {{ number_format($product->book_value, 0, ',', '.') }}</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <small><strong>Status:</strong></small><br>
+                                            @if($product->isFullyDepreciated())
+                                                <span class="badge bg-danger">Fully Depreciated</span>
+                                            @else
+                                                <span class="badge bg-info">In Progress</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     </div>
 
                     <div class="d-flex justify-content-end gap-2">
@@ -164,6 +311,26 @@
                 </div>
 
                 <div class="mb-3">
+                    <strong>Tipe Kategori:</strong><br>
+                    @if($product->category_type === 'perlengkapan')
+                        <span class="badge bg-info">Perlengkapan/Equipment</span>
+                    @else
+                        <span class="badge bg-primary">Persediaan/Inventory</span>
+                    @endif
+                </div>
+
+                @if($product->category_type === 'perlengkapan' && $product->acquisition_date)
+                <div class="mb-3">
+                    <strong>Info Depresiasi:</strong><br>
+                    <small class="text-muted">
+                        Tanggal Perolehan: {{ $product->acquisition_date->format('d/m/Y') }}<br>
+                        Masa Manfaat: {{ $product->useful_life_years }} tahun<br>
+                        Nilai Sisa: Rp {{ number_format($product->salvage_value ?? 0, 0, ',', '.') }}
+                    </small>
+                </div>
+                @endif
+
+                <div class="mb-3">
                     <strong>Dibuat:</strong><br>
                     <small class="text-muted">{{ $product->created_at->format('d/m/Y H:i') }}</small>
                 </div>
@@ -182,6 +349,48 @@
             </div>
         </div>
 
+        {{-- <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-exclamation-triangle"></i> Perhatian
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <h6 class="alert-heading">Peringatan:</h6>
+                    <ul class="mb-0">
+                        <li>Perubahan kode barang akan mempengaruhi semua transaksi terkait</li>
+                        <li>Stok saat ini sebaiknya diubah melalui transaksi masuk/keluar</li>
+                        <li>Produk dengan riwayat transaksi tidak dapat dihapus</li>
+                    </ul>
+                </div>
+            </div>
+        </div> --}}
     </div>
 </div>
+
+<script>
+// Show/hide depreciation section based on category type
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryTypeSelect = document.getElementById('category_type');
+    const depreciationSection = document.getElementById('depreciation-section');
+    
+    function toggleDepreciationSection() {
+        if (categoryTypeSelect.value === 'perlengkapan') {
+            depreciationSection.style.display = 'block';
+        } else {
+            depreciationSection.style.display = 'none';
+            // Optional: Clear depreciation fields when hidden (commented out to preserve data)
+            // document.getElementById('acquisition_date').value = '';
+            // document.getElementById('useful_life_years').value = '';
+            // document.getElementById('salvage_value').value = '0';
+        }
+    }
+    
+    categoryTypeSelect.addEventListener('change', toggleDepreciationSection);
+    
+    // Initial check
+    toggleDepreciationSection();
+});
+</script>
 @endsection
