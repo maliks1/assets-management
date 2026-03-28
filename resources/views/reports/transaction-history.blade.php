@@ -109,24 +109,22 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th>No</th>
+                                    <th>Tipe</th>
                                     <th>Tanggal</th>
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
-                                    <th>Tipe</th>
+                                    <th>Kategori</th>
+                                    <th>Sub Kategori</th>
+                                    <th>Payment Source</th>
                                     <th>Jumlah</th>
-                                    <th>Dicatat Oleh</th>
-                                    <th>Catatan</th>
+                                    <th>Harga Satuan</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($transactions as $index => $transaction)
                                 <tr>
                                     <td>{{ $transactions->firstItem() + $index }}</td>
-                                    <td>{{ $transaction->created_at->format('d/m/Y H:i') }}</td>
-                                    <td>
-                                        <strong>{{ $transaction->product->kode_barang ?? '-' }}</strong>
-                                    </td>
-                                    <td>{{ $transaction->product->nama_barang ?? '-' }}</td>
                                     <td>
                                         @if($transaction->tipe_transaksi == 'masuk')
                                             <span class="badge bg-success">
@@ -138,16 +136,20 @@
                                             </span>
                                         @endif
                                     </td>
+                                    <td>{{ $transaction->created_at->format('d/m/Y H:i') }}</td>
+                                    <td>
+                                        <strong>{{ $transaction->product->kode_barang ?? '-' }}</strong>
+                                    </td>
+                                    <td>{{ $transaction->product->nama_barang ?? '-' }}</td>
+                                    <td>{{ $transaction->product->category_type ?? '-' }}</td>
+                                    <td>{{ $transaction->product->sub_category ?? '-' }}</td>
+                                    <td>{{ $transaction->product->no_proyek ?? '-' }}</td>
                                     <td>
                                         <strong>{{ number_format($transaction->jumlah) }}</strong>
                                     </td>
-                                    <td>{{ $transaction->user->name ?? '-' }}</td>
+                                    <td>Rp {{ number_format($transaction->product->harga ?? 0, 0, ',', '.') }}</td>
                                     <td>
-                                        @if($transaction->catatan)
-                                            <span class="text-muted">{{ $transaction->catatan }}</span>
-                                        @else
-                                            <span class="text-muted">-</span>
-                                        @endif
+                                        <strong>Rp {{ number_format(($transaction->jumlah * ($transaction->product->harga ?? 0)), 0, ',', '.') }}</strong>
                                     </td>
                                 </tr>
                                 @endforeach
