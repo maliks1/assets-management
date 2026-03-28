@@ -117,18 +117,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($recentTransactions as $trx)
+                                    @foreach($recentTransactions as $transaction)
                                         <tr>
-                                            <td>{{ $trx->created_at->format('d/m/Y H:i') }}</td>
-                                            <td>{{ $trx->product->nama_barang ?? '-' }}</td>
+                                            <td>{{ $transaction->created_at->format('d/m/Y H:i') }}</td>
+                                            <td>{{ $transaction->product->nama_barang ?? '-' }}</td>
                                             <td>
-                                                @if($trx->tipe_transaksi == 'masuk')
+                                                @if($transaction->tipe_transaksi == 'masuk')
                                                     <span class="badge bg-success">Masuk</span>
                                                 @else
                                                     <span class="badge bg-danger">Keluar</span>
                                                 @endif
                                             </td>
-                                            <td>{{ $trx->jumlah }}</td>
+                                            <td>{{ $transaction->jumlah }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

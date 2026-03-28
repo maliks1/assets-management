@@ -1,4 +1,4 @@
-# Setup Proyek Sistem Gudang Laravel
+# Setup Project Sistem Gudang Laravel
 
 ## Persyaratan Sistem
 - PHP 8.2 atau lebih tinggi

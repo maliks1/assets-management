@@ -36,12 +36,12 @@
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="start_date" class="form-label">Dari Tanggal</label>
-                            <input type="date" class="form-control" id="start_date" name="start_date" 
+                            <input type="date" class="form-control" id="start_date" name="start_date"
                                    value="{{ request('start_date') }}">
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="end_date" class="form-label">Sampai Tanggal</label>
-                            <input type="date" class="form-control" id="end_date" name="end_date" 
+                            <input type="date" class="form-control" id="end_date" name="end_date"
                                    value="{{ request('end_date') }}">
                         </div>
                         <div class="col-md-2 mb-3">
@@ -143,7 +143,7 @@
                                     <td>{{ $transaction->product->nama_barang ?? '-' }}</td>
                                     <td>{{ $transaction->product->category_type ?? '-' }}</td>
                                     <td>{{ $transaction->product->sub_category ?? '-' }}</td>
-                                    <td>{{ $transaction->product->no_proyek ?? '-' }}</td>
+                                    <td>{{ $transaction->product->no_project ?? '-' }}</td>
                                     <td>
                                         <strong>{{ number_format($transaction->jumlah) }}</strong>
                                     </td>
@@ -160,7 +160,7 @@
                     <!-- Pagination -->
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <div>
-                            Menampilkan {{ $transactions->firstItem() }} - {{ $transactions->lastItem() }} 
+                            Menampilkan {{ $transactions->firstItem() }} - {{ $transactions->lastItem() }}
                             dari {{ $transactions->total() }} data
                         </div>
                         <div>
@@ -197,30 +197,30 @@
 <script>
 function exportData() {
     // Copy current filter values to export form
-    document.getElementById('exportForm').querySelector('input[name="start_date"]').value = 
+    document.getElementById('exportForm').querySelector('input[name="start_date"]').value =
         document.getElementById('start_date').value;
-    document.getElementById('exportForm').querySelector('input[name="end_date"]').value = 
+    document.getElementById('exportForm').querySelector('input[name="end_date"]').value =
         document.getElementById('end_date').value;
-    document.getElementById('exportForm').querySelector('input[name="transaction_type"]').value = 
+    document.getElementById('exportForm').querySelector('input[name="transaction_type"]').value =
         document.getElementById('transaction_type').value;
-    document.getElementById('exportForm').querySelector('input[name="product_id"]').value = 
+    document.getElementById('exportForm').querySelector('input[name="product_id"]').value =
         document.getElementById('product_id').value;
-    
+
     // Submit export form
     document.getElementById('exportForm').submit();
 }
 
 function exportPDF() {
     // Copy current filter values to export PDF form
-    document.getElementById('exportPDFForm').querySelector('input[name="start_date"]').value = 
+    document.getElementById('exportPDFForm').querySelector('input[name="start_date"]').value =
         document.getElementById('start_date').value;
-    document.getElementById('exportPDFForm').querySelector('input[name="end_date"]').value = 
+    document.getElementById('exportPDFForm').querySelector('input[name="end_date"]').value =
         document.getElementById('end_date').value;
-    document.getElementById('exportPDFForm').querySelector('input[name="transaction_type"]').value = 
+    document.getElementById('exportPDFForm').querySelector('input[name="transaction_type"]').value =
         document.getElementById('transaction_type').value;
-    document.getElementById('exportPDFForm').querySelector('input[name="product_id"]').value = 
+    document.getElementById('exportPDFForm').querySelector('input[name="product_id"]').value =
         document.getElementById('product_id').value;
-    
+
     // Submit export PDF form
     document.getElementById('exportPDFForm').submit();
 }

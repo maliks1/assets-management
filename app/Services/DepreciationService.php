@@ -141,8 +141,8 @@ class DepreciationService
         $totalMonths = $product->useful_life_years * 12;
         $monthlyDepreciation = $this->calculateMonthlyDepreciation($product);
 
-        for ($month = 0; $month < $totalMonths; $month++) {
-            $period = (clone $acquisitionDate)->addMonths($month);
+        for ($monthIndex = 0; $monthIndex < $totalMonths; $monthIndex++) {
+            $period = (clone $acquisitionDate)->addMonths($monthIndex);
             $periodString = $period->format('Y-m-01');
 
             // Check if already recorded
@@ -150,7 +150,7 @@ class DepreciationService
                 ->whereDate('period', $periodString)
                 ->first();
 
-            $accumulatedDepreciation = $monthlyDepreciation * ($month + 1);
+            $accumulatedDepreciation = $monthlyDepreciation * ($monthIndex + 1);
             $bookValue = $product->harga - $accumulatedDepreciation;
 
             $schedule[] = [

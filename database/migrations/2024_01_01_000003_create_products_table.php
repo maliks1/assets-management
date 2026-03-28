@@ -22,13 +22,13 @@ return new class extends Migration
             $table->decimal('harga', 10, 2)->default(0);
             $table->string('category_type')->default('persediaan');
             $table->string('sub_category')->nullable();
-            $table->string('no_proyek')->nullable();
+            $table->string('no_project')->nullable();
             $table->date('acquisition_date')->nullable();
             $table->integer('useful_life_years')->nullable();
             $table->decimal('salvage_value', 12, 2)->default(0);
             $table->decimal('accumulated_depreciation', 12, 2)->default(0);
             $table->timestamps();
-            
+
             // Indexes for filtering
             $table->index('category_type');
             $table->index('sub_category');

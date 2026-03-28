@@ -11,8 +11,8 @@ class ProductService
         $query = Product::query();
 
         if ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->where('nama_barang', 'like', "%{$search}%")
+            $query->where(function ($queryBuilder) use ($search) {
+                $queryBuilder->where('nama_barang', 'like', "%{$search}%")
                   ->orWhere('kode_barang', 'like', "%{$search}%");
             });
         }

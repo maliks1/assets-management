@@ -31,12 +31,12 @@ class ProductRequest extends FormRequest
             'stok_minimum' => 'required|integer|min:0',
             'satuan' => 'required|string|max:20',
             'harga' => 'nullable|numeric|min:0',
-            
+
             // Category fields
             'category_type' => 'required|in:persediaan,perlengkapan',
             'sub_category' => 'nullable|string|max:255',
-            'no_proyek' => 'nullable|string|max:255',
-            
+            'no_project' => 'nullable|string|max:255',
+
             // Depreciation fields (only required for perlengkapan/equipment)
             'acquisition_date' => 'nullable|date',
             'useful_life_years' => 'nullable|integer|min:1|max:50',
