@@ -166,15 +166,25 @@ class ReportController extends Controller
      */
     public function assetValue(Request $request)
     {
+        $category = $request->query('category', 'semua');
+        $search = $request->query('search');
         $query = Product::query();
 
         // Filter by category if specified
-        if ($request->filled('category') && $request->category !== 'semua') {
-            $query->where('category_type', $request->category);
+        if ($category !== 'semua') {
+            $query->where('category_type', $category);
         }
 
-        $assets = $query->orderBy('kode_barang')->paginate(20);
+        // Filter by search keyword
+        if ($search) {
+            $query->where(function ($queryBuilder) use ($search) {
+                $queryBuilder->where('nama_barang', 'like', "%{$search}%")
+                    ->orWhere('kode_barang', 'like', "%{$search}%");
+            });
+        }
 
-        return view('reports.asset-value', compact('assets'));
+        $assets = $query->orderBy('kode_barang')->paginate(20)->withQueryString();
+
+        return view('reports.asset-value', compact('assets', 'category'));
     }
 }

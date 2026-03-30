@@ -14,49 +14,37 @@
     </div>
 </div>
 
-<!-- Search Box -->
-<div class="row mb-4">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <form action="{{ route('products.index') }}" method="GET" class="row g-3">
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" name="search" placeholder="Cari berdasarkan nama atau kode barang..." value="{{ request('search') }}">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Cari</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Category Filter Tabs -->
 <div class="row mb-4">
     <div class="col-12">
-        <div class="btn-group" role="group">
-            <a href="{{ route('products.index', ['category' => 'semua', 'search' => request('search')]) }}" 
-               class="btn btn-outline-primary {{ $category === 'semua' ? 'active' : '' }}">
-                <i class="bi bi-collection"></i> Semua
-            </a>
-            <a href="{{ route('products.index', ['category' => 'peralatan', 'search' => request('search')]) }}" 
-               class="btn btn-outline-primary {{ $category === 'peralatan' ? 'active' : '' }}">
-                <i class="bi bi-tools"></i> Peralatan
-            </a>
-            <a href="{{ route('products.index', ['category' => 'perlengkapan', 'search' => request('search')]) }}" 
-               class="btn btn-outline-primary {{ $category === 'perlengkapan' ? 'active' : '' }}">
-                <i class="bi bi-box-seam"></i> Perlengkapan
-            </a>
-            <a href="{{ route('products.index', ['category' => 'persediaan', 'search' => request('search')]) }}" 
-               class="btn btn-outline-primary {{ $category === 'persediaan' ? 'active' : '' }}">
-                <i class="bi bi-archive"></i> Persediaan
-            </a>
+        <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+            <div class="btn-group" role="group" aria-label="Filter kategori aset">
+                <a href="{{ route('products.index', ['category' => 'semua', 'search' => request('search')]) }}" 
+                   class="btn btn-outline-primary {{ $category === 'semua' ? 'active' : '' }}">
+                    <i class="bi bi-collection"></i> Semua
+                </a>
+                <a href="{{ route('products.index', ['category' => 'peralatan', 'search' => request('search')]) }}" 
+                   class="btn btn-outline-primary {{ $category === 'peralatan' ? 'active' : '' }}">
+                    <i class="bi bi-tools"></i> Peralatan
+                </a>
+                <a href="{{ route('products.index', ['category' => 'perlengkapan', 'search' => request('search')]) }}" 
+                   class="btn btn-outline-primary {{ $category === 'perlengkapan' ? 'active' : '' }}">
+                    <i class="bi bi-box-seam"></i> Perlengkapan
+                </a>
+                <a href="{{ route('products.index', ['category' => 'persediaan', 'search' => request('search')]) }}" 
+                   class="btn btn-outline-primary {{ $category === 'persediaan' ? 'active' : '' }}">
+                    <i class="bi bi-archive"></i> Persediaan
+                </a>
+            </div>
+
+            <form action="{{ route('products.index') }}" method="GET" class="d-flex align-items-center ms-auto" style="max-width: 460px; width: 100%;">
+                <input type="hidden" name="category" value="{{ $category }}">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control" name="search" placeholder="Cari berdasarkan nama atau kode barang..." value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

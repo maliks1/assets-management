@@ -20,43 +20,37 @@
 </div>
 
 <!-- Filter Form -->
+<!-- Category Filter Tabs -->
 <div class="row mb-4">
     <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">
-                    <i class="bi bi-funnel"></i> Filter Data
-                </h5>
+        <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+            <div class="btn-group" role="group" aria-label="Filter kategori aset">
+                <a href="{{ route('reports.asset-value', ['category' => 'semua', 'search' => request('search')]) }}" 
+                   class="btn btn-outline-primary {{ $category === 'semua' ? 'active' : '' }}">
+                    <i class="bi bi-collection"></i> Semua
+                </a>
+                <a href="{{ route('reports.asset-value', ['category' => 'peralatan', 'search' => request('search')]) }}" 
+                   class="btn btn-outline-primary {{ $category === 'peralatan' ? 'active' : '' }}">
+                    <i class="bi bi-tools"></i> Peralatan
+                </a>
+                <a href="{{ route('reports.asset-value', ['category' => 'perlengkapan', 'search' => request('search')]) }}" 
+                   class="btn btn-outline-primary {{ $category === 'perlengkapan' ? 'active' : '' }}">
+                    <i class="bi bi-box-seam"></i> Perlengkapan
+                </a>
+                <a href="{{ route('reports.asset-value', ['category' => 'persediaan', 'search' => request('search')]) }}" 
+                   class="btn btn-outline-primary {{ $category === 'persediaan' ? 'active' : '' }}">
+                    <i class="bi bi-archive"></i> Persediaan
+                </a>
             </div>
-            <div class="card-body">
-                <form method="GET" action="{{ route('reports.asset-value') }}" id="filterForm">
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <label for="category" class="form-label">Kategori Aset</label>
-                            <select class="form-select" id="category" name="category">
-                                <option value="semua" {{ request('category', 'semua') == 'semua' ? 'selected' : '' }}>Semua Kategori</option>
-                                <option value="peralatan" {{ request('category') == 'peralatan' ? 'selected' : '' }}>Peralatan</option>
-                                <option value="perlengkapan" {{ request('category') == 'perlengkapan' ? 'selected' : '' }}>Perlengkapan</option>
-                                <option value="persediaan" {{ request('category') == 'persediaan' ? 'selected' : '' }}>Persediaan</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3 d-flex align-items-end">
-                            <div class="d-grid gap-2 w-100">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-search"></i> Filter
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3 d-flex align-items-end">
-                            <div class="d-grid gap-2 w-100">
-                                <a href="{{ route('reports.asset-value') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-arrow-clockwise"></i> Reset
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+
+            <form action="{{ route('reports.asset-value') }}" method="GET" class="d-flex align-items-center ms-auto" style="max-width: 460px; width: 100%;">
+                <input type="hidden" name="category" value="{{ $category }}">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control" name="search" placeholder="Cari berdasarkan nama atau kode barang..." value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
