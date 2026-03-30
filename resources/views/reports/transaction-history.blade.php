@@ -11,9 +11,9 @@
                 <button type="button" class="btn btn-success" onclick="exportData()">
                     <i class="bi bi-download"></i> Ekspor CSV
                 </button>
-                <button type="button" class="btn btn-danger" onclick="exportPDF()">
+                {{-- <button type="button" class="btn btn-danger" onclick="exportPDF()">
                     <i class="bi bi-file-pdf"></i> Cetak PDF
-                </button>
+                </button> --}}
                 <a href="{{ route('dashboard') }}" class="btn btn-secondary">
                     <i class="bi bi-arrow-left"></i> Kembali
                 </a>
@@ -81,7 +81,7 @@
 </div>
 
 <!-- Results Summary -->
-<div class="row mb-4">
+{{-- <div class="row mb-4">
     <div class="col-12">
         <div class="alert alert-info">
             <i class="bi bi-info-circle"></i>
@@ -91,7 +91,7 @@
             @endif
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Data Table -->
 <div class="row">
@@ -105,27 +105,27 @@
             <div class="card-body">
                 @if($transactions->count() > 0)
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover text-center">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>No</th>
-                                    <th>Tipe</th>
-                                    <th>Tanggal</th>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Kategori</th>
-                                    <th>Sub Kategori</th>
-                                    <th>Payment Source</th>
-                                    <th>Jumlah</th>
-                                    <th>Harga Satuan</th>
-                                    <th>Total</th>
+                                    {{-- <th>No</th> --}}
+                                    <th class="text-center">Tipe</th>
+                                    <th class="text-center">Tanggal</th>
+                                    <th class="text-center">Kode Barang</th>
+                                    <th class="text-center">Nama Barang</th>
+                                    <th class="text-center">Kategori</th>
+                                    <th class="text-center">Sub Kategori</th>
+                                    <th class="text-center">Referensi</th>
+                                    <th class="text-center">Jumlah</th>
+                                    <th class="text-center">Harga Satuan</th>
+                                    <th class="text-center">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($transactions as $index => $transaction)
-                                <tr>
-                                    <td>{{ $transactions->firstItem() + $index }}</td>
-                                    <td>
+                                <tr class="align-middle">
+                                    {{-- <td>{{ $transactions->firstItem() + $index }}</td> --}}
+                                    <td class="text-center">
                                         @if($transaction->tipe_transaksi == 'masuk')
                                             <span class="badge bg-success">
                                                 <i class="bi bi-arrow-down"></i> Masuk
@@ -136,19 +136,19 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td>{{ $transaction->created_at->format('d/m/Y H:i') }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $transaction->created_at->format('d/m/Y') }}</td>
+                                    <td class="text-center">
                                         <strong>{{ $transaction->product->kode_barang ?? '-' }}</strong>
                                     </td>
-                                    <td>{{ $transaction->product->nama_barang ?? '-' }}</td>
-                                    <td>{{ $transaction->product->category_type ?? '-' }}</td>
-                                    <td>{{ $transaction->product->sub_category ?? '-' }}</td>
-                                    <td>{{ $transaction->product->no_project ?? '-' }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $transaction->product->nama_barang ?? '-' }}</td>
+                                    <td class="text-center">{{ $transaction->product->category_type ?? '-' }}</td>
+                                    <td class="text-center">{{ $transaction->product->sub_category ?? '-' }}</td>
+                                    <td class="text-center">{{ $transaction->product->no_project ?? '-' }}</td>
+                                    <td class="text-center">
                                         <strong>{{ number_format($transaction->jumlah) }}</strong>
                                     </td>
-                                    <td>Rp {{ number_format($transaction->product->harga ?? 0, 0, ',', '.') }}</td>
-                                    <td>
+                                    <td class="text-center text-nowrap">Rp {{ number_format($transaction->product->harga ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-center text-nowrap">
                                         <strong>Rp {{ number_format(($transaction->jumlah * ($transaction->product->harga ?? 0)), 0, ',', '.') }}</strong>
                                     </td>
                                 </tr>

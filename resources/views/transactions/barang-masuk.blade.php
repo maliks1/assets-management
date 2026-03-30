@@ -7,7 +7,7 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-success text-white">
                 <h5 class="card-title mb-0">
                     <i class="bi bi-plus-circle"></i> Form Barang Masuk
                 </h5>
