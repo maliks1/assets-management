@@ -6,7 +6,7 @@ use App\Models\Product;
 
 class ProductService
 {
-    public function getPaginated($search = null)
+    public function getPaginated($search = null, $category = null)
     {
         $query = Product::query();
 
@@ -15,6 +15,10 @@ class ProductService
                 $queryBuilder->where('nama_barang', 'like', "%{$search}%")
                   ->orWhere('kode_barang', 'like', "%{$search}%");
             });
+        }
+
+        if ($category && $category !== 'semua') {
+            $query->where('category_type', $category);
         }
 
         return $query->orderBy('kode_barang')->paginate(10);

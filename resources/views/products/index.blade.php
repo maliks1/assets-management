@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Master Barang - Sistem Gudang')
+@section('title', 'Data Aset - Sistem Gudang')
 
 @section('content')
 <div class="row">
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 mb-0">Master Barang</h1>
+            <h1 class="h3 mb-0">Data Aset</h1>
             <a href="{{ route('products.create') }}" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> Tambah Barang Baru
             </a>
@@ -33,6 +33,30 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Category Filter Tabs -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="btn-group" role="group">
+            <a href="{{ route('products.index', ['category' => 'semua', 'search' => request('search')]) }}" 
+               class="btn btn-outline-primary {{ $category === 'semua' ? 'active' : '' }}">
+                <i class="bi bi-collection"></i> Semua
+            </a>
+            <a href="{{ route('products.index', ['category' => 'peralatan', 'search' => request('search')]) }}" 
+               class="btn btn-outline-primary {{ $category === 'peralatan' ? 'active' : '' }}">
+                <i class="bi bi-tools"></i> Peralatan
+            </a>
+            <a href="{{ route('products.index', ['category' => 'perlengkapan', 'search' => request('search')]) }}" 
+               class="btn btn-outline-primary {{ $category === 'perlengkapan' ? 'active' : '' }}">
+                <i class="bi bi-box-seam"></i> Perlengkapan
+            </a>
+            <a href="{{ route('products.index', ['category' => 'persediaan', 'search' => request('search')]) }}" 
+               class="btn btn-outline-primary {{ $category === 'persediaan' ? 'active' : '' }}">
+                <i class="bi bi-archive"></i> Persediaan
+            </a>
         </div>
     </div>
 </div>

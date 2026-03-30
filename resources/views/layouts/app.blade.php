@@ -49,15 +49,11 @@
 
         <div class="container">
 
-            <a class="navbar-brand" href="{{ route('dashboard') }}">
-                <img src="{{ asset('icon/logo.svg') }}" alt="Logo" width="75" height="75" class="d-inline-block align-text-top me-2">
+            <a class="navbar-brand" href="{{ route('dashboard') }}" style="font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;">
+                SIMA - PT IKE
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-collapse">
                 <div class="mx-auto">
                     <ul class="navbar-nav justify-content-center">
                         <li class="nav-item">
@@ -69,26 +65,34 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}"
                                 href="{{ route('products.index') }}">
-                                <i class="bi bi-box"></i> Master Barang
+                                <i class="bi bi-box"></i> Data Aset
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('transactions.barang-masuk*') ? 'active' : '' }}"
-                                href="{{ route('transactions.barang-masuk') }}">
-                                <i class="bi bi-box-arrow-in-down"></i> Barang Masuk
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs('transactions.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-arrow-repeat"></i> Transaksi
                             </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('transactions.barang-masuk') }}">
+                                        <i class="bi bi-box-arrow-in-down"></i> Barang Masuk
+                                    </a></li>
+                                <li><a class="dropdown-item" href="{{ route('transactions.barang-keluar') }}">
+                                        <i class="bi bi-box-arrow-up"></i> Barang Keluar
+                                    </a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('transactions.barang-keluar*') ? 'active' : '' }}"
-                                href="{{ route('transactions.barang-keluar') }}">
-                                <i class="bi bi-box-arrow-up"></i> Barang Keluar
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('reports.*') ? 'active' : '' }}"
-                                href="{{ route('reports.transaction-history') }}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs('reports.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                                 <i class="bi bi-file-earmark-text"></i> Laporan
                             </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('reports.transaction-history') }}">
+                                        <i class="bi bi-clock-history"></i> Riwayat Transaksi
+                                    </a></li>
+                                <li><a class="dropdown-item" href="{{ route('reports.asset-value') }}">
+                                        <i class="bi bi-graph-up"></i> Nilai Aset
+                                    </a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -96,9 +100,9 @@
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
+                            <i class="bi bi-person-circle"></i> Halo, {{ Auth::user()->name }}
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="bi bi-box-arrow-right"></i> Logout

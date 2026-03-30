@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('reports/transaction-history', [\App\Http\Controllers\ReportController::class, 'transactionHistory'])->name('reports.transaction-history');
     Route::get('reports/export-transaction-history', [\App\Http\Controllers\ReportController::class, 'exportTransactionHistory'])->name('reports.export-transaction-history');
     Route::get('reports/export-transaction-history-pdf', [\App\Http\Controllers\ReportController::class, 'exportTransactionHistoryPDF'])->name('reports.export-transaction-history-pdf');
+    Route::get('reports/nilai-aset', [\App\Http\Controllers\ReportController::class, 'assetValue'])->name('reports.asset-value');
     
     // Redirect root to dashboard for authenticated users
     Route::get('/', function () {

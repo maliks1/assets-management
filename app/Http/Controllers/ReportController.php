@@ -160,4 +160,21 @@ class ReportController extends Controller
         
         return $pdf->download('laporan_transaksi_' . date('Y-m-d_H-i-s') . '.pdf');
     }
+
+    /**
+     * Show asset value / depreciation report
+     */
+    public function assetValue(Request $request)
+    {
+        $query = Product::query();
+
+        // Filter by category if specified
+        if ($request->filled('category') && $request->category !== 'semua') {
+            $query->where('category_type', $request->category);
+        }
+
+        $assets = $query->orderBy('kode_barang')->paginate(20);
+
+        return view('reports.asset-value', compact('assets'));
+    }
 }

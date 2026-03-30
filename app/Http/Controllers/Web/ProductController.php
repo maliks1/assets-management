@@ -14,8 +14,9 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $products = $this->service->getPaginated($request->search);
-        return view('products.index', compact('products'));
+        $category = $request->query('category', 'semua');
+        $products = $this->service->getPaginated($request->search, $category);
+        return view('products.index', compact('products', 'category'));
     }
 
     public function create()
