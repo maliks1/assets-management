@@ -199,7 +199,7 @@
                         <h5 class="mb-3"><i class="bi bi-calculator"></i> Depresiasi</h5>
 
                         <div class="alert alert-info">
-                            <i class="bi bi-info-circle"></i> <strong>Info:</strong> Depresiasi hanya berlaku untuk produk dengan tipe "Perlengkapan/Equipment". Gunakan metode garis lurus.
+                            <i class="bi bi-info-circle"></i> <strong>Info:</strong> Depresiasi hanya berlaku untuk produk dengan tipe "Peralatan/Equipment". Gunakan metode garis lurus.
                         </div>
 
                         <div class="row">
@@ -314,14 +314,16 @@
 
                 <div class="mb-3">
                     <strong>Tipe Kategori:</strong><br>
-                    @if($product->category_type === 'perlengkapan')
+                    @if($product->category_type === 'peralatan')
+                        <span class="badge bg-info">Peralatan/Equipment</span>
+                    @elseif($product->category_type === 'perlengkapan')
                         <span class="badge bg-info">Perlengkapan/Equipment</span>
                     @else
                         <span class="badge bg-primary">Persediaan/Inventory</span>
                     @endif
                 </div>
 
-                @if($product->category_type === 'perlengkapan' && $product->acquisition_date)
+                @if($product->category_type === 'peralatan' && $product->acquisition_date)
                 <div class="mb-3">
                     <strong>Info Depresiasi:</strong><br>
                     <small class="text-muted">
@@ -382,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const noProjectInput = document.getElementById('no_project');
 
     function toggleDepreciationSection() {
-        if (categoryTypeSelect.value === 'perlengkapan') {
+        if (categoryTypeSelect.value === 'peralatan') {
             depreciationSection.style.display = 'block';
         } else {
             depreciationSection.style.display = 'none';

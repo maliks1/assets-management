@@ -174,6 +174,7 @@
                                     required>
                                 <option value="persediaan" {{ old('category_type') == 'persediaan' ? 'selected' : '' }}>Persediaan (Inventory)</option>
                                 <option value="perlengkapan" {{ old('category_type') == 'perlengkapan' ? 'selected' : '' }}>Perlengkapan (Equipment)</option>
+                                <option value="peralatan" {{ old('category_type') == 'peralatan' ? 'selected' : '' }}>Peralatan (Equipment)</option>
                             </select>
                             @error('category_type')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -211,10 +212,10 @@
                     <!-- Depreciation Section (for Equipment only) -->
                     <div id="depreciation-section" class="mt-4" style="display: none;">
                         <hr class="my-4">
-                        <h5 class="mb-3"><i class="bi bi-calculator"></i> Depresiasi (Khusus Perlengkapan/Equipment)</h5>
+                        <h5 class="mb-3"><i class="bi bi-calculator"></i> Depresiasi (Khusus Peralatan/Equipment)</h5>
 
                         <div class="alert alert-info">
-                            <i class="bi bi-info-circle"></i> <strong>Info:</strong> Depresiasi hanya berlaku untuk produk dengan tipe "Perlengkapan/Equipment". Gunakan metode garis lurus.
+                            <i class="bi bi-info-circle"></i> <strong>Info:</strong> Depresiasi hanya berlaku untuk produk dengan tipe "Peralatan/Equipment". Gunakan metode garis lurus.
                         </div>
 
                         <div class="row">
@@ -313,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const depreciationSection = document.getElementById('depreciation-section');
 
     function toggleDepreciationSection() {
-        if (categoryTypeSelect.value === 'perlengkapan') {
+        if (categoryTypeSelect.value === 'peralatan') {
             depreciationSection.style.display = 'block';
         } else {
             depreciationSection.style.display = 'none';
