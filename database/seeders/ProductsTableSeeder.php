@@ -20,7 +20,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-SLR-270WP',
                 'nama_barang' => 'Panel Surya Monocrystalline 270Wp',
-                'deskripsi' => 'Komponen utama Solar Panel Package untuk area wellhead, tahan cuaca ekstrem.',
                 'stok_saat_ini' => 40,
                 'stok_minimum' => 10,
                 'satuan' => 'unit',
@@ -36,7 +35,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-INV-3KW',
                 'nama_barang' => 'Inverter Off-Grid 3kW',
-                'deskripsi' => 'Inverter kapasitas besar untuk HLSDV dengan kebutuhan daya tinggi.',
                 'stok_saat_ini' => 10,
                 'stok_minimum' => 3,
                 'satuan' => 'unit',
@@ -52,7 +50,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-BAT-VRLA-10AH',
                 'nama_barang' => 'Baterai VRLA 10Ah 12V',
-                'deskripsi' => 'Baterai backup untuk Solar Panel Package pada project CIP dan HLSDV.',
                 'stok_saat_ini' => 85,
                 'stok_minimum' => 20,
                 'satuan' => 'unit',
@@ -68,7 +65,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-IMM-HEATER-24KW',
                 'nama_barang' => 'Immersion Electrical Heater 24kW',
-                'deskripsi' => 'Pemanas elektrik celup khusus untuk bejana proses industri migas.',
                 'stok_saat_ini' => 6,
                 'stok_minimum' => 2,
                 'satuan' => 'unit',
@@ -84,7 +80,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-JB-EX-DI',
                 'nama_barang' => 'Junction Box EX d IIB T4',
-                'deskripsi' => 'Junction box bersertifikat EX untuk instalasi di area hazardous.',
                 'stok_saat_ini' => 30,
                 'stok_minimum' => 8,
                 'satuan' => 'unit',
@@ -105,7 +100,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-FLT-INS-500V',
                 'nama_barang' => 'Insulation Resistance Tester 500V',
-                'deskripsi' => 'Alat uji untuk inspeksi instalasi kelistrikan lapangan.',
                 'stok_saat_ini' => 4,
                 'stok_minimum' => 1,
                 'satuan' => 'unit',
@@ -121,7 +115,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-FLT-THERMAL',
                 'nama_barang' => 'Thermal Imaging Camera',
-                'deskripsi' => 'Kamera termal untuk audit temperatur panel listrik dan heater.',
                 'stok_saat_ini' => 2,
                 'stok_minimum' => 1,
                 'satuan' => 'unit',
@@ -137,7 +130,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-FLT-GAS-DET',
                 'nama_barang' => 'Portable Gas Detector 4-in-1',
-                'deskripsi' => 'Perangkat HSE untuk area migas dengan potensi gas berbahaya.',
                 'stok_saat_ini' => 9,
                 'stok_minimum' => 3,
                 'satuan' => 'unit',
@@ -153,7 +145,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-PPE-HLM-01',
                 'nama_barang' => 'Helm Safety Proyek Class E',
-                'deskripsi' => 'Helm keselamatan dengan perlindungan elektrikal tinggi untuk teknisi lapangan.',
                 'stok_saat_ini' => 50,
                 'stok_minimum' => 15,
                 'satuan' => 'pcs',
@@ -169,7 +160,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-PPE-GLV-1KV',
                 'nama_barang' => 'Electrical Insulating Gloves 1000V',
-                'deskripsi' => 'Sarung tangan isolasi listrik untuk pekerjaan instalasi tegangan tinggi.',
                 'stok_saat_ini' => 25,
                 'stok_minimum' => 10,
                 'satuan' => 'pasang',
@@ -190,7 +180,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-EQP-DRILL',
                 'nama_barang' => 'Mesin Bor Impact Listrik 13mm',
-                'deskripsi' => 'Bor listrik untuk keperluan instalasi bracket panel surya dan panel box.',
                 'stok_saat_ini' => 8,
                 'stok_minimum' => 2,
                 'satuan' => 'unit',
@@ -206,7 +195,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-EQP-WELD',
                 'nama_barang' => 'Mesin Las Inverter 900W',
-                'deskripsi' => 'Mesin las portabel untuk fabrikasi dudukan panel surya di lokasi proyek.',
                 'stok_saat_ini' => 4,
                 'stok_minimum' => 1,
                 'satuan' => 'unit',
@@ -222,7 +210,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-EQP-GENSET',
                 'nama_barang' => 'Genset Portabel Bensin 3000 Watt',
-                'deskripsi' => 'Sumber daya listrik cadangan untuk pengerjaan las atau bor di area off-grid.',
                 'stok_saat_ini' => 3,
                 'stok_minimum' => 1,
                 'satuan' => 'unit',
@@ -238,7 +225,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-EQP-LADDER',
                 'nama_barang' => 'Tangga Teleskopik Aluminium 5.2 Meter',
-                'deskripsi' => 'Tangga lipat teleskopik untuk akses instalasi kabel dan panel di ketinggian.',
                 'stok_saat_ini' => 10,
                 'stok_minimum' => 3,
                 'satuan' => 'unit',
@@ -254,7 +240,6 @@ class ProductsTableSeeder extends Seeder
             [
                 'kode_barang' => 'IKE-EQP-AC',
                 'nama_barang' => 'AC Split 1 PK Standar',
-                'deskripsi' => 'Pendingin ruangan untuk kantor site proyek dan ruang kontrol VRLA/Inverter.',
                 'stok_saat_ini' => 5,
                 'stok_minimum' => 1,
                 'satuan' => 'unit',

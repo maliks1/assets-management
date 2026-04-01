@@ -108,7 +108,6 @@ Setelah menjalankan seeder, Anda akan memiliki:
 - `id` (primary key)
 - `kode_barang` (string, unique)
 - `nama_barang` (string)
-- `deskripsi` (text, nullable)
 - `stok_saat_ini` (integer, default 0)
 - `stok_minimum` (integer, default 5)
 - `created_at`, `updated_at`

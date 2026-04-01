@@ -71,7 +71,7 @@ Aplikasi akan berjalan di `http://localhost:8000`
 - Riwayat transaksi terbaru
 
 ### Model dan Relasi
-- **Product**: Model untuk produk dengan kolom kode_barang, nama_barang, deskripsi, stok_saat_ini, stok_minimum
+- **Product**: Model untuk produk dengan kolom kode_barang, nama_barang, stok_saat_ini, stok_minimum
 - **History**: Model untuk riwayat transaksi dengan relasi ke Product dan User
 - **User**: Model user dengan relasi ke History
 
@@ -87,7 +87,6 @@ Aplikasi akan berjalan di `http://localhost:8000`
 - id (primary key)
 - kode_barang (string, unique)
 - nama_barang (string)
-- deskripsi (text, nullable)
 - stok_saat_ini (integer, default 0)
 - stok_minimum (integer, default 5)
 - created_at, updated_at

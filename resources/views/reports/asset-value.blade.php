@@ -25,9 +25,9 @@
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
             <div class="btn-group" role="group" aria-label="Filter kategori aset">
-                <a href="{{ route('reports.asset-value', ['category' => 'semua', 'search' => request('search')]) }}" 
+                <!-- <a href="{{ route('reports.asset-value', ['category' => 'semua', 'search' => request('search')]) }}" 
                    class="btn btn-outline-primary {{ $category === 'semua' ? 'active' : '' }}">
-                    <i class="bi bi-collection"></i> Semua
+                    <i class="bi bi-collection"></i> Semua -->
                 </a>
                 <a href="{{ route('reports.asset-value', ['category' => 'peralatan', 'search' => request('search')]) }}" 
                    class="btn btn-outline-primary {{ $category === 'peralatan' ? 'active' : '' }}">
@@ -70,14 +70,14 @@
                         <table class="table table-striped table-hover align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Kategori</th>
-                                    <th>Harga Perolehan</th>
+                                    <th class="text-center">Kode Barang</th>
+                                    <th class="text-center">Nama Barang</th>
+                                    <th class="text-center">Kategori</th>
+                                    <th class="text-center">Harga Perolehan</th>
                                     <th class="text-center">Tahun Perolehan</th>
                                     <th class="text-center">Umur Manfaat (Thn)</th>
-                                    <th>Penyusutan Akumulasi</th>
-                                    <th>Nilai Buku</th>
+                                    <th class="text-center">Penyusutan Akumulasi</th>
+                                    <th class="text-center">Nilai Buku</th>
                                     <th class="text-center">Persentase Penyusutan</th>
                                 </tr>
                             </thead>
@@ -99,27 +99,27 @@
                                     <td>
                                         <span class="badge bg-info">{{ ucfirst($asset->category_type) }}</span>
                                     </td>
-                                    <td class="text-end">
+                                    <td class="text-start">
                                         Rp {{ number_format($asset->harga, 0, ',', '.') }}
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center text-nowrap">
                                         @if($asset->acquisition_date)
                                             {{ $asset->acquisition_date->format('d/m/Y') }}
                                         @else
                                             <span class="text-muted">-</span>
                                         @endif
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center text-nowrap">
                                         @if($asset->useful_life_years)
                                             {{ $asset->useful_life_years }} tahun
                                         @else
                                             <span class="text-muted">-</span>
                                         @endif
                                     </td>
-                                    <td class="text-end">
+                                    <td class="text-center text-nowrap">
                                         Rp {{ number_format($asset->accumulated_depreciation, 0, ',', '.') }}
                                     </td>
-                                    <td class="text-end">
+                                    <td class="text-center text-nowrap">
                                         @php
                                             $bookValue = $asset->harga - $asset->accumulated_depreciation;
                                             $bookValue = max(0, $bookValue);
@@ -128,7 +128,7 @@
                                             Rp {{ number_format($bookValue, 0, ',', '.') }}
                                         </strong>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center text-nowrap">
                                         @php
                                             if ($asset->harga > 0) {
                                                 $percentage = ($asset->accumulated_depreciation / $asset->harga) * 100;

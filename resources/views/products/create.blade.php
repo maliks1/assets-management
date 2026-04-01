@@ -74,18 +74,6 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <textarea class="form-control @error('deskripsi') is-invalid @enderror"
-                                  id="deskripsi"
-                                  name="deskripsi"
-                                  rows="3"
-                                  placeholder="Deskripsi produk (opsional)">{{ old('deskripsi') }}</textarea>
-                        @error('deskripsi')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label for="stok_saat_ini" class="form-label">
@@ -292,7 +280,6 @@
                     <ul class="mb-0">
                         <li><strong>Kode Barang:</strong> Harus unik dan tidak boleh kosong</li>
                         <li><strong>Nama Barang:</strong> Nama lengkap produk</li>
-                        <li><strong>Deskripsi:</strong> Penjelasan detail produk (opsional)</li>
                         <li><strong>Stok Saat Ini:</strong> Jumlah stok yang tersedia</li>
                         <li><strong>Stok Minimum:</strong> Batas minimum sebelum peringatan</li>
                     </ul>

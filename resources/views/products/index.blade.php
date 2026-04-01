@@ -75,10 +75,6 @@
                                     <td>
                                         <div>
                                             <strong>{{ $product->nama_barang }}</strong>
-                                            @if($product->deskripsi)
-                                                <br>
-                                                <small class="text-muted">{{ Str::limit($product->deskripsi, 50) }}</small>
-                                            @endif
                                         </div>
                                     </td>
                                     <td>
