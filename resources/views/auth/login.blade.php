@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistem Gudang</title>
+    <title>Login - Sistem Manajemen Aset</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -144,7 +144,7 @@
                                 <img src="{{ asset('icon/logo.svg') }}" alt="Logo Sistem Gudang">
                             </div>
                             <h2 class="login-title">Login</h2>
-                            <p class="login-subtitle">Sistem Manajemen Gudang</p>
+                            <p class="login-subtitle">Sistem Manajemen Aset</p>
                             <p class="login-subtitle">silahkan langsung login untuk masuk</p>
                         </div>
 
@@ -165,7 +165,7 @@
                                     <i class="bi bi-envelope me-2"></i>Email
                                 </label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" 
-                                       id="email" name="email" value="{{ old('email', 'admin@example.com') }}" 
+                                       id="email" name="email" value="{{ old('email', 'admin@ike.co.id') }}" 
                                        placeholder="Masukkan email Anda" required>
                                 @error('email')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>

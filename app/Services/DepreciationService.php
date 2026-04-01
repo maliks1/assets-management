@@ -40,7 +40,7 @@ class DepreciationService
      */
     public function canDepreciate(Product $product): bool
     {
-        return $product->category_type === 'perlengkapan' 
+        return $product->category_type === 'peralatan' 
             && $product->acquisition_date !== null
             && $product->useful_life_years !== null
             && $product->useful_life_years > 0
@@ -112,7 +112,7 @@ class DepreciationService
     public function recordDepreciationForAllProducts(?Carbon $period = null): int
     {
         $period = $period ?? Carbon::now();
-        $products = Product::where('category_type', 'perlengkapan')
+        $products = Product::where('category_type', 'peralatan')
             ->whereNotNull('acquisition_date')
             ->whereNotNull('useful_life_years')
             ->get();
@@ -179,7 +179,7 @@ class DepreciationService
      */
     public function getDepreciationSummary(): array
     {
-        $products = Product::where('category_type', 'perlengkapan')
+        $products = Product::where('category_type', 'peralatan')
             ->whereNotNull('acquisition_date')
             ->whereNotNull('useful_life_years')
             ->get();
