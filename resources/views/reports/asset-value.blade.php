@@ -61,10 +61,13 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0">
-                    <i class="bi bi-table"></i> Data Aset dan Penyusutan
+                    <i class="bi bi-table"></i> Data Aset
                 </h5>
             </div>
             <div class="card-body">
+                @php
+                    $hideDepreciationColumns = in_array($category, ['perlengkapan', 'persediaan'], true);
+                @endphp
                 @if($assets->count() > 0)
                     <div class="table-responsive">
                         <table class="table table-striped table-hover align-middle">
@@ -73,12 +76,16 @@
                                     <th class="text-center">Kode Barang</th>
                                     <th class="text-center">Nama Barang</th>
                                     <th class="text-center">Kategori</th>
+                                    @unless($hideDepreciationColumns)
                                     <th class="text-center">Harga Perolehan</th>
                                     <th class="text-center">Tahun Perolehan</th>
                                     <th class="text-center">Umur Manfaat (Thn)</th>
                                     <th class="text-center">Penyusutan Akumulasi</th>
-                                    <th class="text-center">Nilai Buku</th>
+                                    @endunless
+                                    <th class="text-center">{{ $hideDepreciationColumns ? 'Harga Perolehan' : 'Nilai Buku' }}</th>
+                                    @unless($hideDepreciationColumns)
                                     <th class="text-center">Persentase Penyusutan</th>
+                                    @endunless
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,6 +106,7 @@
                                     <td>
                                         <span class="badge bg-info">{{ ucfirst($asset->category_type) }}</span>
                                     </td>
+                                    @unless($hideDepreciationColumns)
                                     <td class="text-start">
                                         Rp {{ number_format($asset->harga, 0, ',', '.') }}
                                     </td>
@@ -119,15 +127,18 @@
                                     <td class="text-center text-nowrap">
                                         Rp {{ number_format($asset->accumulated_depreciation, 0, ',', '.') }}
                                     </td>
+                                    @endunless
                                     <td class="text-center text-nowrap">
                                         @php
                                             $bookValue = $asset->harga - $asset->accumulated_depreciation;
                                             $bookValue = max(0, $bookValue);
+                                            $lastColumnValue = $hideDepreciationColumns ? $asset->harga : $bookValue;
                                         @endphp
                                         <strong class="text-success">
-                                            Rp {{ number_format($bookValue, 0, ',', '.') }}
+                                            Rp {{ number_format($lastColumnValue, 0, ',', '.') }}
                                         </strong>
                                     </td>
+                                    @unless($hideDepreciationColumns)
                                     <td class="text-center text-nowrap">
                                         @php
                                             if ($asset->harga > 0) {
@@ -141,10 +152,11 @@
                                             {{ number_format($percentage, 1) }}%
                                         </span>
                                     </td>
+                                    @endunless
                                 </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="9" class="text-center py-5">
+                                        <td colspan="{{ $hideDepreciationColumns ? 4 : 9 }}" class="text-center py-5">
                                             <div class="text-muted">
                                                 <i class="bi bi-inbox display-4"></i>
                                                 <h4 class="mt-3">Tidak ada data aset</h4>
@@ -164,7 +176,7 @@
                         $totalBookValue = $totalHarga - $totalDepreciation;
                     @endphp
                     <div class="row mt-4">
-                        <div class="col-md-3">
+                        <div class="{{ $hideDepreciationColumns ? 'col-md-6' : 'col-md-3' }}">
                             <div class="card bg-light">
                                 <div class="card-body">
                                     <small class="text-muted d-block mb-2">Total Harga Perolehan</small>
@@ -172,6 +184,7 @@
                                 </div>
                             </div>
                         </div>
+                        @unless($hideDepreciationColumns)
                         <div class="col-md-3">
                             <div class="card bg-light">
                                 <div class="card-body">
@@ -188,7 +201,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        @endunless
+                        <div class="{{ $hideDepreciationColumns ? 'col-md-6' : 'col-md-3' }}">
                             <div class="card bg-light">
                                 <div class="card-body">
                                     <small class="text-muted d-block mb-2">Jumlah Aset</small>
@@ -218,10 +232,12 @@
 
 <script>
 function exportData() {
-    const category = document.getElementById('category').value;
+    const categoryInput = document.querySelector('input[name="category"]');
+    const category = categoryInput ? categoryInput.value : 'semua';
+    const hideDepreciationColumns = ['perlengkapan', 'persediaan'].includes(category);
     const filename = 'laporan_nilai_aset_' + new Date().toISOString().slice(0,10) + '.csv';
     
-    const headers = [
+    const fullHeaders = [
         'Kode Barang',
         'Nama Barang',
         'Kategori',
@@ -232,13 +248,21 @@ function exportData() {
         'Nilai Buku',
         'Persentase Penyusutan'
     ];
+    const compactHeaders = [
+        'Kode Barang',
+        'Nama Barang',
+        'Kategori',
+        'Harga Perolehan'
+    ];
+    const headers = hideDepreciationColumns ? compactHeaders : fullHeaders;
+    const columnCount = headers.length;
     
     const rows = [];
     const tables = document.querySelectorAll('table tbody tr');
     
     tables.forEach(row => {
         if (row.cells.length > 0) {
-            const data = Array.from(row.cells).slice(0, 9).map(cell => {
+            const data = Array.from(row.cells).slice(0, columnCount).map(cell => {
                 let text = cell.textContent.trim();
                 // Remove any special formatting
                 text = text.replace(/\n/g, ' ').replace(/\s+/g, ' ');

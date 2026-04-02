@@ -50,7 +50,7 @@
         <div class="container">
 
             <a class="navbar-brand" href="{{ route('dashboard') }}" style="font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;">
-                SIMA - PT IKE
+                Sistem Manajemen Aset
             </a>
 
             <div class="navbar-collapse">
