@@ -61,8 +61,6 @@
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
                                     <th>Stok Saat Ini</th>
-                                    <th>Stok Minimum</th>
-                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -78,21 +76,9 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span class="badge bg-{{ $product->stok_saat_ini > $product->stok_minimum ? 'success' : 'warning' }} fs-6">
+                                        <span class="badge bg-primary fs-6">
                                             {{ $product->stok_saat_ini }}
                                         </span>
-                                    </td>
-                                    <td>{{ $product->stok_minimum }}</td>
-                                    <td>
-                                        @if($product->stok_saat_ini > $product->stok_minimum)
-                                            <span class="badge bg-success">
-                                                <i class="bi bi-check-circle"></i> Aman
-                                            </span>
-                                        @else
-                                            <span class="badge bg-warning">
-                                                <i class="bi bi-exclamation-triangle"></i> Menipis
-                                            </span>
-                                        @endif
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group">

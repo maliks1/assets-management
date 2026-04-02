@@ -19,7 +19,6 @@ class ProductResource extends JsonResource
             'kode_barang' => $this->kode_barang,
             'nama_barang' => $this->nama_barang,
             'stok_saat_ini' => $this->stok_saat_ini,
-            'stok_minimum' => $this->stok_minimum,
             'satuan' => $this->satuan,
             'harga' => $this->harga,
             'created_at' => $this->created_at,

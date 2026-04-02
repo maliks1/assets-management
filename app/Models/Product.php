@@ -20,7 +20,6 @@ class Product extends Model
         'kode_barang',
         'nama_barang',
         'stok_saat_ini',
-        'stok_minimum',
         'satuan',
         'harga',
         'category_type',
@@ -59,14 +58,6 @@ class Product extends Model
     public function depreciationRecords()
     {
         return $this->hasMany(DepreciationRecord::class);
-    }
-
-    /**
-     * Check if stock is low (below minimum)
-     */
-    public function isStockLow()
-    {
-        return $this->stok_saat_ini <= $this->stok_minimum;
     }
 
     /**

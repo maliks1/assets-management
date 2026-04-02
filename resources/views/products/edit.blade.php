@@ -89,24 +89,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label for="stok_minimum" class="form-label">
-                                Stok Minimum <span class="text-danger">*</span>
-                            </label>
-                            <input type="number"
-                                   class="form-control @error('stok_minimum') is-invalid @enderror"
-                                   id="stok_minimum"
-                                   name="stok_minimum"
-                                   value="{{ old('stok_minimum', $product->stok_minimum) }}"
-                                   min="0"
-                                   required>
-                            @error('stok_minimum')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            {{-- <div class="form-text">Batas minimum sebelum peringatan</div> --}}
-                        </div>
-
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="stok_saat_ini" class="form-label">
                                 Stok Saat Ini <span class="text-danger">*</span>
                             </label>
@@ -122,7 +105,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="satuan" class="form-label">
                                 Satuan <span class="text-danger">*</span>
                             </label>
@@ -253,23 +236,14 @@
                         <div class="row mt-3">
                             <div class="col-12">
                                 <div class="alert alert-secondary">
-                                    <h6 class="alert-heading"><i class="bi bi-graph-up"></i> Status Depresiasi Saat Ini</h6>
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <small><strong>Depresiasi Terakumulasi:</strong></small><br>
                                             <span class="text-primary">Rp {{ number_format($product->accumulated_depreciation, 0, ',', '.') }}</span>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <small><strong>Nilai Buku:</strong></small><br>
                                             <span class="text-success">Rp {{ number_format($product->book_value, 0, ',', '.') }}</span>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <small><strong>Status:</strong></small><br>
-                                            @if($product->isFullyDepreciated())
-                                                <span class="badge bg-danger">Fully Depreciated</span>
-                                            @else
-                                                <span class="badge bg-info">In Progress</span>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -299,19 +273,6 @@
                 </h5>
             </div>
             <div class="card-body">
-                <div class="mb-3">
-                    <strong>Status Stok:</strong>
-                    @if($product->stok_saat_ini > $product->stok_minimum)
-                        <span class="badge bg-success">
-                            <i class="bi bi-check-circle"></i> Aman
-                        </span>
-                    @else
-                        <span class="badge bg-warning">
-                            <i class="bi bi-exclamation-triangle"></i> Menipis
-                        </span>
-                    @endif
-                </div>
-
                 <div class="mb-3">
                     <strong>Tipe Kategori:</strong><br>
                     @if($product->category_type === 'peralatan')

@@ -7,27 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
 {
-    public function test_is_stock_low_returns_true_when_less_or_equal_to_minimum()
-    {
-        $product = new Product();
-        $product->stok_saat_ini = 5;
-        $product->stok_minimum = 5;
-
-        $this->assertTrue($product->isStockLow());
-
-        $product->stok_saat_ini = 3;
-        $this->assertTrue($product->isStockLow());
-    }
-
-    public function test_is_stock_low_returns_false_when_greater_than_minimum()
-    {
-        $product = new Product();
-        $product->stok_saat_ini = 10;
-        $product->stok_minimum = 5;
-
-        $this->assertFalse($product->isStockLow());
-    }
-
     public function test_add_stock_calls_increment_with_correct_arguments()
     {
         $amount = 7;

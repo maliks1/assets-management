@@ -16,7 +16,6 @@ class DashboardController extends Controller
     {
         $totalProducts = Product::count();
         $totalStock = Product::sum('stok_saat_ini');
-        $lowStockProducts = Product::whereColumn('stok_saat_ini', '<=', 'stok_minimum')->orderBy('stok_saat_ini')->get();
         $recentTransactions = History::with('product')->orderBy('created_at', 'desc')->limit(5)->get();
         
         // Hitung total nilai stok
@@ -25,7 +24,6 @@ class DashboardController extends Controller
         return view('dashboard', compact(
             'totalProducts',
             'totalStock',
-            'lowStockProducts',
             'recentTransactions',
             'totalStockValue'
         ));

@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="stok_saat_ini" class="form-label">
                                 Stok Saat Ini <span class="text-danger">*</span>
                             </label>
@@ -91,24 +91,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-4 mb-3">
-                            <label for="stok_minimum" class="form-label">
-                                Stok Minimum <span class="text-danger">*</span>
-                            </label>
-                            <input type="number"
-                                   class="form-control @error('stok_minimum') is-invalid @enderror"
-                                   id="stok_minimum"
-                                   name="stok_minimum"
-                                   value="{{ old('stok_minimum', 5) }}"
-                                   min="0"
-                                   required>
-                            @error('stok_minimum')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <div class="form-text">Batas minimum sebelum peringatan</div>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="satuan" class="form-label">
                                 Satuan <span class="text-danger">*</span>
                             </label>
@@ -281,7 +264,6 @@
                         <li><strong>Kode Barang:</strong> Harus unik dan tidak boleh kosong</li>
                         <li><strong>Nama Barang:</strong> Nama lengkap produk</li>
                         <li><strong>Stok Saat Ini:</strong> Jumlah stok yang tersedia</li>
-                        <li><strong>Stok Minimum:</strong> Batas minimum sebelum peringatan</li>
                     </ul>
                 </div>
 

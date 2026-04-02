@@ -27,7 +27,6 @@ class ProductRequest extends FormRequest
             'kode_barang' => 'required|string|max:50|unique:products,kode_barang,' . $id,
             'nama_barang' => 'required|string|max:255',
             'stok_saat_ini' => 'required|integer|min:0',
-            'stok_minimum' => 'required|integer|min:0',
             'satuan' => 'required|string|max:20',
             'harga' => 'nullable|numeric|min:0',
 

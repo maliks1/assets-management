@@ -49,55 +49,6 @@
         </div>
     </div>
 
-    <div class="card shadow-sm border-0 mb-4">
-        <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="mb-0">
-                    <i class="bi bi-exclamation-triangle text-danger me-2"></i>
-                    Barang Hampir Habis
-                </h5>
-                <span class="badge bg-danger">
-                    {{ $lowStockProducts->count() }}
-                </span>
-            </div>
-
-            @if($lowStockProducts->count() > 0)
-                <div class="table-responsive">
-                    <table class="table table-sm align-middle">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Kode</th>
-                                <th>Nama</th>
-                                <th>Stok</th>
-                                <th>Minimum</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($lowStockProducts as $product)
-                                <tr>
-                                    <td>{{ $product->kode_barang }}</td>
-                                    <td>{{ $product->nama_barang }}</td>
-                                    <td>
-                                        <span class="badge bg-danger">
-                                            {{ $product->stok_saat_ini }}
-                                        </span>
-                                    </td>
-                                    <td>{{ $product->stok_minimum }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            @else
-                <div class="text-muted text-center py-3">
-                    <i class="bi bi-check-circle fs-4 text-success"></i><br>
-                    Semua stok aman
-                </div>
-            @endif
-        </div>
-    </div>
-
-
     <div class="row">
         <div class="col-md-6 mb-4">
             <div class="card h-100">
@@ -149,7 +100,6 @@
                     <ul class="mb-0">
                         <li>Gunakan menu <b>Barang Masuk</b> untuk menambah stok.</li>
                         <li>Gunakan menu <b>Barang Keluar</b> untuk mengurangi stok.</li>
-                        <li>Periksa <b>Barang Akan Habis</b> untuk mencegah kehabisan stok.</li>
                         <li>Semua aktivitas tercatat di <b>Riwayat Transaksi</b>.</li>
                     </ul>
                 </div>

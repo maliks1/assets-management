@@ -8,7 +8,6 @@ Sistem manajemen gudang yang dibangun dengan Laravel dan Bootstrap untuk mengelo
 - **Dashboard**: Statistik real-time untuk monitoring gudang
 - **Manajemen Produk**: CRUD operasi untuk produk dengan tracking stok
 - **Riwayat Transaksi**: Pencatatan transaksi masuk dan keluar
-- **Notifikasi Stok**: Peringatan otomatis untuk stok yang menipis
 - **Responsive Design**: Interface yang responsif dengan Bootstrap 5
 
 ## Teknologi yang Digunakan
@@ -109,7 +108,6 @@ Setelah menjalankan seeder, Anda akan memiliki:
 - `kode_barang` (string, unique)
 - `nama_barang` (string)
 - `stok_saat_ini` (integer, default 0)
-- `stok_minimum` (integer, default 5)
 - `created_at`, `updated_at`
 
 ### Tabel `history`
@@ -132,8 +130,6 @@ Setelah menjalankan seeder, Anda akan memiliki:
 
 Dashboard menampilkan:
 - Total produk
-- Statistik stok aman dan menipis
-- Daftar produk dengan stok menipis
 - Riwayat transaksi terbaru
 
 ## Keamanan

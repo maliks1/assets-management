@@ -40,36 +40,17 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-6 mb-3">
                         <label class="form-label fw-bold">Stok Saat Ini</label>
                         <div class="d-flex align-items-center">
-                            <span class="badge bg-{{ $product->stok_saat_ini > $product->stok_minimum ? 'success' : 'warning' }} fs-5 me-2">
+                            <span class="badge bg-primary fs-5 me-2">
                                 {{ $product->stok_saat_ini }}
                             </span>
-                            @if($product->stok_saat_ini <= $product->stok_minimum)
-                                <span class="text-warning">
-                                    <i class="bi bi-exclamation-triangle"></i> Stok menipis!
-                                </span>
-                            @endif
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label fw-bold">Stok Minimum</label>
-                        <p class="form-control-plaintext">{{ $product->stok_minimum }}</p>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label fw-bold">Status</label>
-                        <div>
-                            @if($product->stok_saat_ini > $product->stok_minimum)
-                                <span class="badge bg-success fs-6">
-                                    <i class="bi bi-check-circle"></i> Aman
-                                </span>
-                            @else
-                                <span class="badge bg-warning fs-6">
-                                    <i class="bi bi-exclamation-triangle"></i> Menipis
-                                </span>
-                            @endif
-                        </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Satuan</label>
+                        <p class="form-control-plaintext">{{ $product->satuan }}</p>
                     </div>
                 </div>
 
@@ -202,26 +183,6 @@
             </div>
         </div>
 
-        <!-- Peringatan -->
-        @if($product->stok_saat_ini <= $product->stok_minimum)
-            <div class="card mt-3 border-warning">
-                <div class="card-header bg-warning text-dark">
-                    <h5 class="card-title mb-0">
-                        <i class="bi bi-exclamation-triangle"></i> Peringatan Stok
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="alert alert-warning mb-0">
-                        <strong>Stok Menipis!</strong><br>
-                        Stok saat ini ({{ $product->stok_saat_ini }}) sudah mencapai atau di bawah minimum ({{ $product->stok_minimum }}).
-                        <br><br>
-                        <a href="#" class="btn btn-warning btn-sm">
-                            <i class="bi bi-plus-circle"></i> Tambah Stok Sekarang
-                        </a>
-                    </div>
-                </div>
-            </div>
-        @endif
     </div>
 </div>
 @endsection 
