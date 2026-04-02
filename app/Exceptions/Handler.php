@@ -37,7 +37,7 @@ class Handler extends ExceptionHandler
             // Redirect to appropriate page based on route
             if (str_contains($request->path(), 'products')) {
                 return redirect()->route('products.index')
-                    ->with('error', 'Produk tidak ditemukan.');
+                    ->with('error', 'Barang tidak ditemukan.');
             }
 
             return redirect()->back()

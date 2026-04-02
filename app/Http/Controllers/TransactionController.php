@@ -29,8 +29,8 @@ class TransactionController extends Controller
             'jumlah' => 'required|integer|min:1',
             'catatan' => 'nullable|string',
         ], [
-            'product_id.required' => 'Produk wajib dipilih.',
-            'product_id.exists' => 'Produk tidak valid.',
+            'product_id.required' => 'Barang wajib dipilih.',
+            'product_id.exists' => 'Barang tidak valid.',
             'jumlah.required' => 'Jumlah wajib diisi.',
             'jumlah.integer' => 'Jumlah harus berupa angka.',
             'jumlah.min' => 'Jumlah minimal 1.',
@@ -47,7 +47,7 @@ class TransactionController extends Controller
         // Authorize stock update
         $this->authorize('updateStock', $product);
 
-        // Tambah stok produk
+        // Tambah stok barang
         $product->increment('stok_saat_ini', $request->jumlah);
 
         // Catat ke history
@@ -82,8 +82,8 @@ class TransactionController extends Controller
             'jumlah' => 'required|integer|min:1',
             'catatan' => 'nullable|string',
         ], [
-            'product_id.required' => 'Produk wajib dipilih.',
-            'product_id.exists' => 'Produk tidak valid.',
+            'product_id.required' => 'Barang wajib dipilih.',
+            'product_id.exists' => 'Barang tidak valid.',
             'jumlah.required' => 'Jumlah wajib diisi.',
             'jumlah.integer' => 'Jumlah harus berupa angka.',
             'jumlah.min' => 'Jumlah minimal 1.',
@@ -107,7 +107,7 @@ class TransactionController extends Controller
                 ->withInput();
         }
 
-        // Kurangi stok produk
+        // Kurangi stok barang
         $product->decrement('stok_saat_ini', $request->jumlah);
 
         // Catat ke history

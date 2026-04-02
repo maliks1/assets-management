@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Produk - Sistem Gudang')
+@section('title', 'Tambah Barang - Sistem Gudang')
 
 @section('content')
 <div class="row">
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 mb-0">Tambah Produk Baru</h1>
+            <h1 class="h3 mb-0">Barang Masuk</h1>
             <a href="{{ route('products.index') }}" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a>
@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0">
-                    <i class="bi bi-plus-circle"></i> Form Tambah Produk
+                    <i class="bi bi-plus-circle"></i> Form Tambah Barang
                 </h5>
             </div>
             <div class="card-body">
@@ -54,7 +54,7 @@
                             @error('kode_barang')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="form-text">Kode unik untuk mengidentifikasi produk</div>
+                            <div class="form-text">Kode unik untuk mengidentifikasi barang</div>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -132,7 +132,7 @@
 
                     <!-- Category Section -->
                     <hr class="my-4">
-                    <h5 class="mb-3"><i class="bi bi-folder"></i> Kategori Produk</h5>
+                    <h5 class="mb-3"><i class="bi bi-folder"></i> Kategori Barang</h5>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -150,7 +150,7 @@
                             @error('category_type')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="form-text">Pilih tipe produk</div>
+                            <div class="form-text">Pilih tipe barang</div>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -186,7 +186,7 @@
                         <h5 class="mb-3"><i class="bi bi-calculator"></i> Depresiasi (Khusus Peralatan/Equipment)</h5>
 
                         <div class="alert alert-info">
-                            <i class="bi bi-info-circle"></i> <strong>Info:</strong> Depresiasi hanya berlaku untuk produk dengan tipe "Peralatan/Equipment". Gunakan metode garis lurus.
+                            <i class="bi bi-info-circle"></i> <strong>Info:</strong> Depresiasi hanya berlaku untuk barang dengan tipe "Peralatan/Equipment". Gunakan metode garis lurus.
                         </div>
 
                         <div class="row">
@@ -242,7 +242,7 @@
                             <i class="bi bi-x-circle"></i> Batal
                         </a>
                         <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-check-circle"></i> Simpan Produk
+                            <i class="bi bi-check-circle"></i> Simpan Barang
                         </button>
                     </div>
                 </form>
@@ -262,14 +262,14 @@
                     <h6 class="alert-heading">Panduan Pengisian:</h6>
                     <ul class="mb-0">
                         <li><strong>Kode Barang:</strong> Harus unik dan tidak boleh kosong</li>
-                        <li><strong>Nama Barang:</strong> Nama lengkap produk</li>
+                        <li><strong>Nama Barang:</strong> Nama lengkap barang</li>
                         <li><strong>Stok Saat Ini:</strong> Jumlah stok yang tersedia</li>
                     </ul>
                 </div>
 
                 <div class="alert alert-warning">
                     <h6 class="alert-heading">Perhatian:</h6>
-                    <p class="mb-0">Setelah produk dibuat, Anda dapat menambahkan transaksi masuk untuk menambah stok awal.</p>
+                    <p class="mb-0">Setelah barang dibuat, Anda dapat menambahkan transaksi masuk untuk menambah stok awal.</p>
                 </div>
             </div>
         </div>

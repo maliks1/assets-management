@@ -147,7 +147,7 @@ class ReportController extends Controller
         if ($request->filled('product_id') && $request->product_id !== 'all') {
             $product = Product::find($request->product_id);
             if ($product) {
-                $filterInfo[] = 'Produk: ' . $product->kode_barang . ' - ' . $product->nama_barang;
+                $filterInfo[] = 'Barang: ' . $product->kode_barang . ' - ' . $product->nama_barang;
             }
         }
         

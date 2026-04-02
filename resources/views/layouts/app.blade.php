@@ -63,17 +63,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}"
+                            <a class="nav-link {{ request()->routeIs('products.index') || request()->routeIs('products.show') || request()->routeIs('products.edit') ? 'active' : '' }}"
                                 href="{{ route('products.index') }}">
                                 <i class="bi bi-box"></i> Data Aset
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle {{ request()->routeIs('transactions.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs('transactions.*') || request()->routeIs('products.create') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                                 <i class="bi bi-arrow-repeat"></i> Transaksi
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('transactions.barang-masuk') }}">
+                                <li><a class="dropdown-item {{ request()->routeIs('products.create') ? 'active' : '' }}" href="{{ route('products.create') }}">
                                         <i class="bi bi-box-arrow-in-down"></i> Barang Masuk
                                     </a></li>
                                 <li><a class="dropdown-item" href="{{ route('transactions.barang-keluar') }}">

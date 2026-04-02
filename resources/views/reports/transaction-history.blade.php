@@ -53,9 +53,9 @@
                             </select>
                         </div>
                         <div class="col-md-2 mb-3">
-                            <label for="product_id" class="form-label">Produk</label>
+                            <label for="product_id" class="form-label">Barang</label>
                             <select class="form-select" id="product_id" name="product_id">
-                                <option value="all" {{ request('product_id') == 'all' ? 'selected' : '' }}>Semua Produk</option>
+                                <option value="all" {{ request('product_id') == 'all' ? 'selected' : '' }}>Semua Barang</option>
                                 @foreach($products as $product)
                                     <option value="{{ $product->id }}" {{ request('product_id') == $product->id ? 'selected' : '' }}>
                                         {{ $product->kode_barang }} - {{ $product->nama_barang }}

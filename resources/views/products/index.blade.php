@@ -7,9 +7,6 @@
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="h3 mb-0">Data Aset</h1>
-            <a href="{{ route('products.create') }}" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Tambah Barang Baru
-            </a>
         </div>
     </div>
 </div>
@@ -112,7 +109,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Apakah Anda yakin ingin menghapus produk <strong>{{ $product->nama_barang }}</strong>?</p>
+                                                <p>Apakah Anda yakin ingin menghapus barang <strong>{{ $product->nama_barang }}</strong>?</p>
                                                 <p class="text-danger mb-0">
                                                     <i class="bi bi-exclamation-triangle"></i>
                                                     Tindakan ini tidak dapat dibatalkan!
@@ -143,10 +140,10 @@
                 @else
                     <div class="text-center py-5">
                         <i class="bi bi-box display-1 text-muted"></i>
-                        <h4 class="mt-3 text-muted">Belum ada produk</h4>
-                        <p class="text-muted">Mulai dengan menambahkan produk pertama Anda.</p>
+                        <h4 class="mt-3 text-muted">Belum ada barang</h4>
+                        <p class="text-muted">Mulai dengan menambahkan barang pertama Anda.</p>
                         <a href="{{ route('products.create') }}" class="btn btn-primary">
-                            <i class="bi bi-plus-circle"></i> Tambah Produk Pertama
+                            <i class="bi bi-plus-circle"></i> Tambah Barang Pertama
                         </a>
                     </div>
                 @endif

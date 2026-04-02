@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Produk - Sistem Gudang')
+@section('title', 'Edit Barang - Sistem Gudang')
 
 @section('content')
 <div class="row">
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            {{-- <h1 class="h3 mb-0">Edit Produk</h1>
+            {{-- <h1 class="h3 mb-0">Edit Barang</h1>
             <a href="{{ route('products.index') }}" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a> --}}
@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0">
-                    <i class="bi bi-pencil"></i> Form Edit Produk
+                    <i class="bi bi-pencil"></i> Form Edit Barang
                 </h5>
             </div>
             <div class="card-body">
@@ -126,7 +126,7 @@
                     </div>
 
                     <!-- Category Section -->
-                    <h5 class="mb-3"><i class="bi bi-folder"></i> Kategori Produk</h5>
+                    <h5 class="mb-3"><i class="bi bi-folder"></i> Kategori Barang</h5>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -144,7 +144,7 @@
                             @error('category_type')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="form-text">Pilih tipe produk</div>
+                            <div class="form-text">Pilih tipe barang</div>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -159,7 +159,7 @@
                             @error('sub_category')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="form-text">Pilih kategori sub untuk produk ini</div>
+                            <div class="form-text">Pilih kategori sub untuk barang ini</div>
                         </div>
                     </div>
 
@@ -182,7 +182,7 @@
                         <h5 class="mb-3"><i class="bi bi-calculator"></i> Depresiasi</h5>
 
                         <div class="alert alert-info">
-                            <i class="bi bi-info-circle"></i> <strong>Info:</strong> Depresiasi hanya berlaku untuk produk dengan tipe "Peralatan/Equipment". Gunakan metode garis lurus.
+                            <i class="bi bi-info-circle"></i> <strong>Info:</strong> Depresiasi hanya berlaku untuk barang dengan tipe "Peralatan/Equipment". Gunakan metode garis lurus.
                         </div>
 
                         <div class="row">
@@ -257,7 +257,7 @@
                             <i class="bi bi-x-circle"></i> Batal
                         </a>
                         <button type="submit" class="btn btn-warning">
-                            <i class="bi bi-check-circle"></i> Update Produk
+                            <i class="bi bi-check-circle"></i> Update Barang
                         </button>
                     </div>
                 </form>
@@ -269,7 +269,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0">
-                    <i class="bi bi-info-circle"></i> Informasi Produk
+                    <i class="bi bi-info-circle"></i> Informasi Barang
                 </h5>
             </div>
             <div class="card-body">
@@ -308,7 +308,7 @@
                 @if($product->history()->count() > 0)
                     <div class="alert alert-info">
                         <h6 class="alert-heading">Riwayat Transaksi:</h6>
-                        <p class="mb-0">Produk ini memiliki {{ $product->history()->count() }} transaksi.</p>
+                        <p class="mb-0">Barang ini memiliki {{ $product->history()->count() }} transaksi.</p>
                     </div>
                 @endif
             </div>
@@ -326,7 +326,7 @@
                     <ul class="mb-0">
                         <li>Perubahan kode barang akan mempengaruhi semua transaksi terkait</li>
                         <li>Stok saat ini sebaiknya diubah melalui transaksi masuk/keluar</li>
-                        <li>Produk dengan riwayat transaksi tidak dapat dihapus</li>
+                        <li>Barang dengan riwayat transaksi tidak dapat dihapus</li>
                     </ul>
                 </div>
             </div>

@@ -27,9 +27,9 @@
                 <form action="{{ route('transactions.barang-masuk.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="product_id" class="form-label">Pilih Produk <span class="text-danger">*</span></label>
+                        <label for="product_id" class="form-label">Pilih Barang <span class="text-danger">*</span></label>
                         <select class="form-select @error('product_id') is-invalid @enderror" id="product_id" name="product_id" required>
-                            <option value="">-- Pilih Produk --</option>
+                            <option value="">-- Pilih Barang --</option>
                             @foreach($products as $product)
                                 <option value="{{ $product->id }}" {{ old('product_id') == $product->id ? 'selected' : '' }}>
                                     {{ $product->kode_barang }} - {{ $product->nama_barang }} (Stok: {{ $product->stok_saat_ini }})

@@ -8,7 +8,7 @@
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
-                        <div class="text-muted small">Total Jenis Produk</div>
+                        <div class="text-muted small">Total Jenis Barang</div>
                         <h3 class="fw-bold mb-0">{{ $totalProducts }}</h3>
                     </div>
                     <div class="text-primary fs-1">
@@ -22,7 +22,7 @@
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
-                        <div class="text-muted small">Total Produk</div>
+                        <div class="text-muted small">Total Barang</div>
                         <h3 class="fw-bold mb-0">{{ $totalStock }}</h3>
                     </div>
                     <div class="text-success fs-1">
@@ -36,7 +36,7 @@
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
-                        <div class="text-muted small">Total Nilai Produk</div>
+                        <div class="text-muted small">Total Nilai Barang</div>
                         <h3 class="fw-bold mb-0">
                             Rp {{ number_format($totalStockValue, 0, ',', '.') }}
                         </h3>

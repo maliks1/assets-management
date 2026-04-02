@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Produk - Sistem Gudang')
+@section('title', 'Detail Barang - Sistem Gudang')
 
 @section('content')
 <div class="row">
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 mb-0">Detail Produk</h1>
+            <h1 class="h3 mb-0">Detail Barang</h1>
             <div>
                 <a href="{{ route('products.edit', $product) }}" class="btn btn-warning">
                     <i class="bi bi-pencil"></i> Edit
@@ -24,7 +24,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0">
-                    <i class="bi bi-box"></i> Informasi Produk
+                    <i class="bi bi-box"></i> Informasi Barang
                 </h5>
             </div>
             <div class="card-body">
@@ -116,7 +116,7 @@
                 @else
                     <div class="text-center py-4">
                         <i class="bi bi-clock-history display-4 text-muted"></i>
-                        <p class="text-muted mt-2">Belum ada transaksi untuk produk ini.</p>
+                        <p class="text-muted mt-2">Belum ada transaksi untuk barang ini.</p>
                     </div>
                 @endif
             </div>
@@ -177,7 +177,7 @@
                         <i class="bi bi-dash-circle"></i> Kurangi Stok
                     </a>
                     <a href="{{ route('products.edit', $product) }}" class="btn btn-warning">
-                        <i class="bi bi-pencil"></i> Edit Produk
+                        <i class="bi bi-pencil"></i> Edit Barang
                     </a>
                 </div>
             </div>

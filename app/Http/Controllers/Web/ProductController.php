@@ -29,7 +29,7 @@ class ProductController extends Controller
         $this->service->store($request->validated());
 
         return redirect()->route('products.index')
-            ->with('success', 'Produk berhasil ditambahkan.');
+            ->with('success', 'Barang berhasil ditambahkan.');
     }
 
     public function edit(Product $product)
@@ -42,7 +42,7 @@ class ProductController extends Controller
         $this->service->update($product, $request->validated());
 
         return redirect()->route('products.index')
-            ->with('success', 'Produk berhasil diperbarui.');
+            ->with('success', 'Barang berhasil diperbarui.');
     }
 
     public function destroy(Product $product)
@@ -55,7 +55,7 @@ class ProductController extends Controller
         }
 
         return redirect()->route('products.index')
-            ->with('success', 'Produk berhasil dihapus.');
+            ->with('success', 'Barang berhasil dihapus.');
     }
 }
 

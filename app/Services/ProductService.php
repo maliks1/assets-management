@@ -38,7 +38,7 @@ class ProductService
     public function delete(Product $product)
     {
         if ($product->history()->count() > 0) {
-            throw new \Exception('Produk memiliki riwayat transaksi.');
+            throw new \Exception('Barang memiliki riwayat transaksi.');
         }
 
         $product->delete();
