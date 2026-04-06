@@ -140,12 +140,12 @@
                 <div class="card card-shadow">
                     <div class="card-body">
                         <div class="login-header">
-                            <div class="login-logo">
+                            <!-- <div class="login-logo">
                                 <img src="{{ asset('icon/logo.svg') }}" alt="Logo Sistem Gudang">
-                            </div>
+                            </div> -->
                             <h2 class="login-title">Login</h2>
                             <p class="login-subtitle">Sistem Manajemen Aset</p>
-                            <p class="login-subtitle">silahkan langsung login untuk masuk</p>
+                            <!-- <p class="login-subtitle">silahkan langsung login untuk masuk</p> -->
                         </div>
 
                         @if ($errors->any())
@@ -191,9 +191,9 @@
                             </div>
                         </form>
 
-                        <div class="login-footer">
+                        <!-- <div class="login-footer">
                             Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
