@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-success text-white">
                 <h5 class="card-title mb-0">
                     <i class="bi bi-plus-circle"></i> Form Tambah Barang
                 </h5>

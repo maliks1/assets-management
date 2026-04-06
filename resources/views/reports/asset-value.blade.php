@@ -148,7 +148,10 @@
                                                 $percentage = 0;
                                             }
                                         @endphp
-                                        <span class="badge {{ $percentage >= 75 ? 'bg-danger' : ($percentage >= 50 ? 'bg-warning' : 'bg-success') }}">
+                                        <!-- <span class="badge {{ $percentage >= 75 ? 'bg-danger' : ($percentage >= 50 ? 'bg-warning' : 'bg-success') }}">
+                                            {{ number_format($percentage, 1) }}%
+                                        </span> -->
+                                        <span class="badge bg-danger">
                                             {{ number_format($percentage, 1) }}%
                                         </span>
                                     </td>

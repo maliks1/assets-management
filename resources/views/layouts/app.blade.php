@@ -68,6 +68,18 @@
                                 <i class="bi bi-box"></i> Data Aset
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('reports.transaction-history') ? 'active' : '' }}"
+                                href="{{ route('reports.transaction-history') }}">
+                                <i class="bi bi-clock-history"></i> Riwayat Transaksi
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('reports.asset-value') ? 'active' : '' }}"
+                                href="{{ route('reports.asset-value') }}">
+                                <i class="bi bi-graph-up"></i> Nilai Aset
+                            </a>
+                        </li>
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ request()->routeIs('transactions.*') || request()->routeIs('products.create') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                                 <i class="bi bi-arrow-repeat"></i> Transaksi
@@ -81,7 +93,7 @@
                                     </a></li>
                             </ul>
                         </li> -->
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ request()->routeIs('reports.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                                 <i class="bi bi-file-earmark-text"></i> Laporan
                             </a>
@@ -93,7 +105,7 @@
                                         <i class="bi bi-graph-up"></i> Nilai Aset
                                     </a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 

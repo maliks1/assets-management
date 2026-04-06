@@ -5,8 +5,8 @@ Sistem manajemen gudang yang dibangun dengan Laravel dan Bootstrap untuk mengelo
 ## Fitur Utama
 
 - **Autentikasi**: Login, register, dan logout dengan sistem keamanan Laravel
-- **Dashboard**: Statistik real-time untuk monitoring gudang
-- **Manajemen Produk**: CRUD operasi untuk produk dengan tracking stok
+- **Dashboard**: Statistik real-time untuk ringkasan aset dan transaksi
+- **Manajemen Produk**: CRUD operasi untuk produk dengan pencatatan kuantitas barang
 - **Riwayat Transaksi**: Pencatatan transaksi masuk dan keluar
 - **Responsive Design**: Interface yang responsif dengan Bootstrap 5
 
@@ -131,6 +131,9 @@ Setelah menjalankan seeder, Anda akan memiliki:
 Dashboard menampilkan:
 - Total produk
 - Riwayat transaksi terbaru
+
+Catatan:
+- Sistem saat ini tidak menggunakan fitur notifikasi ketersediaan stok otomatis.
 
 ## Keamanan
 

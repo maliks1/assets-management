@@ -23,8 +23,8 @@
             border-left-color: #198754;
         }
 
-        .dashboard-shell .kpi-card.kpi-warning {
-            border-left-color: #ffc107;
+        .dashboard-shell .kpi-card.kpi-info {
+            border-left-color: #0dcaf0;
         }
 
         .dashboard-shell .section-card .card-header {
@@ -65,10 +65,10 @@
         <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-4">
             <div>
                 <h1 class="h3 mb-0">Dashboard</h1>
-                <!-- <p class="text-muted mb-0">Pantau stok, nilai aset, dan aktivitas transaksi terbaru dalam satu tampilan.</p> -->
+                <!-- <p class="text-muted mb-0">Ringkasan aset, nilai barang, dan aktivitas transaksi terbaru dalam satu tampilan.</p> -->
             </div>
             <div class="d-flex gap-2">
-                <a href="{{ route('transactions.barang-masuk') }}" class="btn btn-outline-success btn-sm">
+                <a href="{{ route('products.create') }}" class="btn btn-outline-success btn-sm">
                     <i class="bi bi-box-arrow-in-down me-1"></i> Barang Masuk
                 </a>
                 <a href="{{ route('transactions.barang-keluar') }}" class="btn btn-outline-danger btn-sm">
@@ -107,7 +107,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card shadow-sm border-0 h-100 kpi-card kpi-warning">
+            <div class="card shadow-sm border-0 h-100 kpi-card kpi-info">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
                         <div class="text-muted small">Total Nilai Barang</div>

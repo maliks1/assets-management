@@ -40,19 +40,19 @@ class DashboardController extends Controller
 
             return [
                 'label' => ucfirst($category),
-                'total_items' => (int) ($data->total_items ?? 0),
-                'total_stock' => (int) ($data->total_stock ?? 0),
+                'total_items' => (int) ($data?->total_items ?? 0),
+                'total_stock' => (int) ($data?->total_stock ?? 0),
             ];
         });
 
         $todayTransactions = [
             'masuk' => [
-                'total_transactions' => (int) ($todayTransactionSummary->get('masuk')->total_transactions ?? 0),
-                'total_quantity' => (int) ($todayTransactionSummary->get('masuk')->total_quantity ?? 0),
+                'total_transactions' => (int) ($todayTransactionSummary->get('masuk')?->total_transactions ?? 0),
+                'total_quantity' => (int) ($todayTransactionSummary->get('masuk')?->total_quantity ?? 0),
             ],
             'keluar' => [
-                'total_transactions' => (int) ($todayTransactionSummary->get('keluar')->total_transactions ?? 0),
-                'total_quantity' => (int) ($todayTransactionSummary->get('keluar')->total_quantity ?? 0),
+                'total_transactions' => (int) ($todayTransactionSummary->get('keluar')?->total_transactions ?? 0),
+                'total_quantity' => (int) ($todayTransactionSummary->get('keluar')?->total_quantity ?? 0),
             ],
         ];
 
