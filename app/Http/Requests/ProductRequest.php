@@ -22,6 +22,10 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         $id = $this->route('product')?->id;
+        $categoryType = $this->input('category_type');
+        $subCategoryRules = $categoryType === 'persediaan'
+            ? 'required|in:project'
+            : 'required|in:kantor,project';
 
         return [
             'kode_barang' => 'required|string|max:50|unique:products,kode_barang,' . $id,
@@ -32,8 +36,8 @@ class ProductRequest extends FormRequest
 
             // Category fields
             'category_type' => 'required|in:persediaan,perlengkapan,peralatan',
-            'sub_category' => 'nullable|string|max:255',
-            'no_project' => 'nullable|string|max:255',
+            'sub_category' => $subCategoryRules,
+            'no_project' => 'required_if:sub_category,project|string|max:255',
 
             // Depreciation fields (only applicable for peralatan/equipment)
             'acquisition_date' => 'nullable|date',
