@@ -7,9 +7,9 @@
     <div class="col-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="h3 mb-0">Barang Masuk</h1>
-            <a href="{{ route('products.index') }}" class="btn btn-secondary">
+            <!-- <a href="{{ route('products.index') }}" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Kembali
-            </a>
+            </a> -->
         </div>
     </div>
 </div>
