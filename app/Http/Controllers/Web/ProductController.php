@@ -32,6 +32,13 @@ class ProductController extends Controller
             ->with('success', 'Barang berhasil ditambahkan.');
     }
 
+    public function show(Product $product)
+    {
+        $product->load('history.user');
+
+        return view('products.show', compact('product'));
+    }
+
     public function edit(Product $product)
     {
         return view('products.edit', compact('product'));

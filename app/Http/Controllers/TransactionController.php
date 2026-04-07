@@ -7,6 +7,7 @@ use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class TransactionController extends Controller
 {
@@ -68,7 +69,9 @@ class TransactionController extends Controller
      */
     public function createBarangKeluar()
     {
-        $products = Product::orderBy('kode_barang')->get();
+        $products = Product::whereIn('category_type', ['persediaan', 'perlengkapan'])
+            ->orderBy('kode_barang')
+            ->get();
         return view('transactions.barang-keluar', compact('products'));
     }
 
@@ -78,12 +81,17 @@ class TransactionController extends Controller
     public function storeBarangKeluar(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'product_id' => 'required|exists:products,id',
+            'product_id' => [
+                'required',
+                Rule::exists('products', 'id')->where(function ($query) {
+                    $query->whereIn('category_type', ['persediaan', 'perlengkapan']);
+                }),
+            ],
             'jumlah' => 'required|integer|min:1',
             'catatan' => 'nullable|string',
         ], [
             'product_id.required' => 'Barang wajib dipilih.',
-            'product_id.exists' => 'Barang tidak valid.',
+            'product_id.exists' => 'Hanya barang kategori persediaan dan perlengkapan yang dapat dikeluarkan.',
             'jumlah.required' => 'Jumlah wajib diisi.',
             'jumlah.integer' => 'Jumlah harus berupa angka.',
             'jumlah.min' => 'Jumlah minimal 1.',
