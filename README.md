@@ -1,159 +1,169 @@
-# Sistem Gudang Laravel
+# Assets Management System
 
-Sistem manajemen gudang yang dibangun dengan Laravel dan Bootstrap untuk mengelola produk, stok, dan riwayat transaksi.
+Aplikasi manajemen aset berbasis Laravel untuk mengelola data barang, transaksi stok, nilai aset, dan pencatatan depresiasi bulanan.
 
-## Fitur Utama
+## Ringkasan Fitur
 
-- **Autentikasi**: Login, register, dan logout dengan sistem keamanan Laravel
-- **Dashboard**: Statistik real-time untuk ringkasan aset dan transaksi
-- **Manajemen Produk**: CRUD operasi untuk produk dengan pencatatan kuantitas barang
-- **Riwayat Transaksi**: Pencatatan transaksi masuk dan keluar
-- **Responsive Design**: Interface yang responsif dengan Bootstrap 5
+- Autentikasi pengguna (login, register, logout).
+- Dashboard ringkasan operasional:
+  - total barang,
+  - total stok,
+  - total nilai stok,
+  - ringkasan per kategori,
+  - transaksi hari ini (masuk/keluar),
+  - 5 transaksi terbaru.
+- Manajemen master barang (CRUD) dengan kategori:
+  - persediaan,
+  - perlengkapan,
+  - peralatan.
+- Manajemen stok melalui transaksi:
+  - barang masuk,
+  - barang keluar (dengan validasi stok tidak boleh minus).
+- Riwayat transaksi lengkap dengan pencatat (user) dan catatan transaksi.
+- Laporan histori transaksi:
+  - filter tanggal,
+  - filter tipe transaksi,
+  - filter barang,
+  - ekspor CSV,
+  - ekspor PDF.
+- Laporan nilai aset/depresiasi dengan filter kategori dan pencarian.
+- Pencatatan depresiasi bulanan metode garis lurus (straight-line) dengan tabel histori depresiasi per periode.
 
-## Teknologi yang Digunakan
+## Fitur Depresiasi
 
-- **Backend**: Laravel 12
-- **Database**: MySQL
-- **Frontend**: Bootstrap 5, Bootstrap Icons
-- **Authentication**: Laravel built-in authentication
-- **PHP**: 8.2+
+Fitur depresiasi memakai metode garis lurus dengan parameter utama:
 
-## Instalasi dan Setup
+- nilai perolehan,
+- nilai residu,
+- umur manfaat,
+- tanggal perolehan.
 
-### Prerequisites
-- PHP 8.2 atau lebih tinggi
+Implementasi saat ini mencatat depresiasi bulanan menggunakan command artisan berikut:
+
+```bash
+php artisan depreciation:record
+```
+
+Opsi periode (format YYYY-MM):
+
+```bash
+php artisan depreciation:record --period=2026-04
+```
+
+Hasil pencatatan disimpan ke tabel depreciation_records dan nilai akumulasi depresiasi pada produk ikut diperbarui.
+
+## Stack Teknologi
+
+- Backend: Laravel 12
+- PHP: 8.2+
+- Database: MySQL/MariaDB
+- Frontend: Blade + Bootstrap 5 (Vite)
+- Export PDF: barryvdh/laravel-dompdf
+
+## Instalasi
+
+### Prasyarat
+
+- PHP 8.2+
 - Composer
-- MySQL 5.7 atau lebih tinggi
-- Node.js dan NPM (untuk asset compilation)
+- MySQL/MariaDB
+- Node.js dan npm
 
-### Langkah-langkah Instalasi
+### Langkah Setup
 
-1. **Clone repository**
-   ```bash
-   git clone <repository-url>
-   cd web-gudang
-   ```
+1. Clone repository, lalu masuk ke folder proyek.
+2. Install dependency backend dan frontend.
 
-2. **Install dependencies**
-   ```bash
-   composer install
-   npm install
-   ```
+```bash
+composer install
+npm install
+```
 
-3. **Setup environment**
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
+3. Siapkan environment.
 
-4. **Konfigurasi database**
-   Edit file `.env` dan sesuaikan konfigurasi database:
-   ```env
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=web_gudang
-   DB_USERNAME=root
-   DB_PASSWORD=your_password
-   ```
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-5. **Buat database**
-   Buat database MySQL dengan nama `web_gudang`
+4. Atur koneksi database di file .env.
+5. Jalankan migrasi dan seeder.
 
-6. **Jalankan migrasi dan seeder**
-   ```bash
-   php artisan migrate
-   php artisan db:seed
-   ```
+```bash
+php artisan migrate --seed
+```
 
-7. **Compile assets (opsional)**
-   ```bash
-   npm run dev
-   ```
+6. Jalankan aset frontend (opsional untuk development).
 
-8. **Jalankan server**
-   ```bash
-   php artisan serve
-   ```
+```bash
+npm run dev
+```
 
-Aplikasi akan berjalan di `http://localhost:8000`
+7. Jalankan aplikasi.
 
-## Data Default
+```bash
+php artisan serve
+```
 
-Setelah menjalankan seeder, Anda akan memiliki:
+Default URL: http://localhost:8000
 
-### User Admin
-- Email: `admin@example.com`
-- Password: `password`
+## Data Seed Awal
 
-### Produk Contoh
-- Laptop Asus ROG (Stok: 10)
-- Mouse Gaming (Stok: 25)
-- Keyboard Mechanical (Stok: 3)
-- Monitor 24 inch (Stok: 8)
-- Headset Gaming (Stok: 2)
+Seeder menyiapkan:
 
-## Struktur Database
+- 5 akun pengguna contoh (domain ike.co.id), termasuk admin.
+- Data barang lintas kategori persediaan, perlengkapan, dan peralatan.
+- Data histori transaksi.
+- Data depresiasi contoh per periode.
 
-### Tabel `users`
-- `id` (primary key)
-- `name` (string)
-- `email` (string, unique)
-- `password` (string, hashed)
-- `remember_token`
-- `created_at`, `updated_at`
+Password default akun seed: password
 
-### Tabel `products`
-- `id` (primary key)
-- `kode_barang` (string, unique)
-- `nama_barang` (string)
-- `stok_saat_ini` (integer, default 0)
-- `created_at`, `updated_at`
+## Struktur Data Inti
 
-### Tabel `history`
-- `id` (primary key)
-- `product_id` (foreign key ke products)
-- `user_id` (foreign key ke users)
-- `tipe_transaksi` (enum: 'masuk', 'keluar')
-- `jumlah` (integer)
-- `catatan` (string, nullable)
-- `created_at`, `updated_at`
+### users
 
-## Relasi Database
+- Menyimpan akun pengguna aplikasi.
 
-- **Product** hasMany **History**
-- **History** belongsTo **Product**
-- **History** belongsTo **User**
-- **User** hasMany **History**
+### products
 
-## Fitur Dashboard
+- Menyimpan master barang/aset.
+- Field utama mencakup identitas barang, stok, harga, kategori, sub-kategori, nomor proyek, serta parameter depresiasi.
 
-Dashboard menampilkan:
-- Total produk
-- Riwayat transaksi terbaru
+### history
 
-Catatan:
-- Sistem saat ini tidak menggunakan fitur notifikasi ketersediaan stok otomatis.
+- Menyimpan histori transaksi stok masuk/keluar.
+- Terhubung ke produk dan user.
 
-## Keamanan
+### depreciation_records
 
-- Password di-hash menggunakan bcrypt
-- CSRF protection pada semua form
-- Validasi input pada semua endpoint
-- Middleware authentication untuk route yang dilindungi
+- Menyimpan histori depresiasi bulanan per barang.
+- Memiliki unique key product_id + period untuk mencegah duplikasi periode yang sama.
 
-## Contributing
+## Route Utama
 
-1. Fork repository
-2. Buat branch fitur baru (`git checkout -b feature/AmazingFeature`)
-3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Buat Pull Request
+- /login, /register, /logout
+- /dashboard
+- /products (resource CRUD)
+- /transactions/barang-masuk
+- /transactions/barang-keluar
+- /reports/transaction-history
+- /reports/export-transaction-history
+- /reports/export-transaction-history-pdf
+- /reports/nilai-aset
 
-## License
+## Pengujian
 
-This project uses the Apache license. See the `LICENSE` file for more details.
+Jalankan test dengan:
 
-## Support
+```bash
+php artisan test
+```
 
-Jika ada pertanyaan atau masalah, silakan buat issue di repository ini.
+## Catatan Implementasi
+
+- Otorisasi policy produk sudah terhubung, namun saat ini aturan policy masih mengizinkan semua user terautentikasi.
+- Penghapusan barang diblokir jika barang sudah memiliki histori transaksi.
+
+## Lisensi
+
+Proyek ini menggunakan lisensi Apache. Lihat file LICENSE untuk detail.
