@@ -50,7 +50,7 @@
         <div class="container">
 
             <a class="navbar-brand" href="{{ route('dashboard') }}" style="font-size: 1.5rem; font-weight: 700; letter-spacing: 1px;">
-                Sistem Manajemen Aset
+                <!-- <img src="{{ asset('icon/LOGO IKE.png') }}" alt="Logo" width="75" height="75" class="d-inline-block align-text-top me-2"> --> Sistem Manajemen Aset
             </a>
 
             <div class="navbar-collapse">

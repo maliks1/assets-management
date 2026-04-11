@@ -11,9 +11,9 @@
                 <button type="button" class="btn btn-success" onclick="exportData()">
                     <i class="bi bi-download"></i> Ekspor CSV
                 </button>
-                {{-- <button type="button" class="btn btn-danger" onclick="exportPDF()">
+                <button type="button" class="btn btn-danger" onclick="exportPDF()">
                     <i class="bi bi-file-pdf"></i> Cetak PDF
-                </button> --}}
+                </button>
                 <a href="{{ route('dashboard') }}" class="btn btn-secondary">
                     <i class="bi bi-arrow-left"></i> Kembali
                 </a>

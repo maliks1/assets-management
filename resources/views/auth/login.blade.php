@@ -30,8 +30,8 @@
         }
 
         .login-logo {
-            width: 80px;
-            height: 80px;
+            width: 140px;
+            height: 140px;
             margin: 0 auto 1rem;
             padding: 1rem;
             background-color: #f8f9fa;
@@ -140,10 +140,10 @@
                 <div class="card card-shadow">
                     <div class="card-body">
                         <div class="login-header">
-                            <!-- <div class="login-logo">
-                                <img src="{{ asset('icon/logo.svg') }}" alt="Logo Sistem Gudang">
-                            </div> -->
-                            <h2 class="login-title">Login</h2>
+                            <div class="login-logo">
+                                <img src="{{ asset('icon/LOGO IKE.png') }}" alt="Logo Sistem Gudang">
+                            </div>
+                            <!-- <h2 class="login-title">Login</h2> -->
                             <p class="login-subtitle">Sistem Manajemen Aset</p>
                             <!-- <p class="login-subtitle">silahkan langsung login untuk masuk</p> -->
                         </div>

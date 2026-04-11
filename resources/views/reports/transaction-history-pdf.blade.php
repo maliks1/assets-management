@@ -72,7 +72,7 @@
 <body>
     <div class="header">
         <div class="title">{{ $title }}</div>
-        <div class="subtitle">Sistem Manajemen Gudang</div>
+        <div class="subtitle">Sistem Manajemen Aset</div>
         <div class="filter-info">
             @if(count($filterInfo) > 0)
                 <strong>Filter:</strong> {{ implode(' | ', $filterInfo) }}
@@ -122,7 +122,7 @@
     </table>
     
     <div class="footer">
-        Dicetak pada: {{ $date }} | Sistem Manajemen Gudang
+        Dicetak pada: {{ $date }} | Sistem Manajemen Aset
     </div>
 </body>
 </html>
