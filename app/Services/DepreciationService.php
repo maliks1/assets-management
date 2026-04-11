@@ -57,6 +57,9 @@ class DepreciationService
         }
 
         $period = $period ?? Carbon::now();
+        if (!$this->isPeriodEligible($product, $period)) {
+            return null;
+        }
         $periodString = $period->format('Y-m-01'); // First day of month
 
         // Check if already recorded for this period
@@ -112,12 +115,16 @@ class DepreciationService
     public function recordDepreciationForAllProducts(?Carbon $period = null): int
     {
         $period = $period ?? Carbon::now();
+        $periodMonth = $period->copy()->startOfMonth();
+
         $products = Product::where('category_type', 'peralatan')
             ->whereNotNull('acquisition_date')
             ->whereNotNull('useful_life_years')
+            ->whereDate('acquisition_date', '<=', $periodMonth->toDateString())
             ->get();
 
         $count = 0;
+        /** @var Product $product */
         foreach ($products as $product) {
             if ($this->recordMonthlyDepreciation($product, $period)) {
                 $count++;
@@ -125,6 +132,46 @@ class DepreciationService
         }
 
         return $count;
+    }
+
+    /**
+     * Ensure a product has depreciation records from acquisition month through target month.
+     */
+    public function catchUpDepreciation(Product $product, ?Carbon $targetPeriod = null): int
+    {
+        if (!$this->canDepreciate($product) || !$product->acquisition_date) {
+            return 0;
+        }
+
+        $targetPeriod = ($targetPeriod ?? Carbon::now())->copy()->startOfMonth();
+        $acquisitionMonth = Carbon::parse($product->acquisition_date)->startOfMonth();
+
+        if ($targetPeriod->lt($acquisitionMonth)) {
+            return 0;
+        }
+
+        $created = 0;
+        for ($period = $acquisitionMonth->copy(); $period->lte($targetPeriod); $period->addMonth()) {
+            if ($this->recordMonthlyDepreciation($product, $period->copy())) {
+                $created++;
+                $product->refresh();
+            }
+        }
+
+        return $created;
+    }
+
+    /**
+     * Depreciation starts in acquisition month (full-month convention).
+     */
+    private function isPeriodEligible(Product $product, Carbon $period): bool
+    {
+        if (!$product->acquisition_date) {
+            return false;
+        }
+
+        $acquisitionMonth = Carbon::parse($product->acquisition_date)->startOfMonth();
+        return $period->copy()->startOfMonth()->gte($acquisitionMonth);
     }
 
     /**
@@ -192,6 +239,7 @@ class DepreciationService
             'assets_fully_depreciated' => 0,
         ];
 
+        /** @var Product $product */
         foreach ($products as $product) {
             $summary['total_original_value'] += $product->harga;
             $summary['total_accumulated_depreciation'] += $product->accumulated_depreciation;

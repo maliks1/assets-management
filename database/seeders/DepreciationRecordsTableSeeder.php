@@ -23,12 +23,13 @@ class DepreciationRecordsTableSeeder extends Seeder
             Carbon::create(2026, 3, 1),
         ];
 
-        $products = Product::where('category_type', 'perlengkapan')
+        $products = Product::where('category_type', 'peralatan')
             ->whereNotNull('acquisition_date')
             ->whereNotNull('useful_life_years')
             ->where('useful_life_years', '>', 0)
             ->get();
 
+        /** @var Product $product */
         foreach ($products as $product) {
             $monthlyDepreciation = ($product->harga - $product->salvage_value) / ($product->useful_life_years * 12);
             $monthlyDepreciation = round($monthlyDepreciation, 2);

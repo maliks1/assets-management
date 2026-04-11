@@ -26,6 +26,12 @@ class ProductRequest extends FormRequest
         $subCategoryRules = $categoryType === 'persediaan'
             ? 'required|in:project'
             : 'required|in:kantor,project';
+        $acquisitionDateRules = $categoryType === 'peralatan'
+            ? 'required|date'
+            : 'nullable|date';
+        $usefulLifeRules = $categoryType === 'peralatan'
+            ? 'required|integer|min:1|max:50'
+            : 'nullable|integer|min:1|max:50';
 
         return [
             'kode_barang' => 'required|string|max:50|unique:products,kode_barang,' . $id,
@@ -40,8 +46,8 @@ class ProductRequest extends FormRequest
             'no_project' => 'required_if:sub_category,project|string|max:255',
 
             // Depreciation fields (only applicable for peralatan/equipment)
-            'acquisition_date' => 'nullable|date',
-            'useful_life_years' => 'nullable|integer|min:1|max:50',
+            'acquisition_date' => $acquisitionDateRules,
+            'useful_life_years' => $usefulLifeRules,
             'salvage_value' => 'nullable|numeric|min:0',
             'accumulated_depreciation' => 'nullable|numeric|min:0',
         ];
