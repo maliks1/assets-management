@@ -43,7 +43,7 @@ class ProductRequest extends FormRequest
             // Category fields
             'category_type' => 'required|in:persediaan,perlengkapan,peralatan',
             'sub_category' => $subCategoryRules,
-            'no_project' => 'required_if:sub_category,project|string|max:255',
+            'no_project' => 'nullable|required_if:sub_category,project|string|max:255',
 
             // Depreciation fields (only applicable for peralatan/equipment)
             'acquisition_date' => $acquisitionDateRules,
