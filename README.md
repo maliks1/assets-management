@@ -2,7 +2,7 @@
 
 ![Laravel](https://img.shields.io/badge/Laravel-12-red)
 ![PHP](https://img.shields.io/badge/PHP-8.2+-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 
 Aplikasi manajemen aset berbasis Laravel untuk mengelola data barang, transaksi stok, nilai aset, dan pencatatan depresiasi bulanan.
 
