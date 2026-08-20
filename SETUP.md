@@ -32,13 +32,13 @@ Edit file `.env` dan sesuaikan konfigurasi database:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=web_gudang
+DB_DATABASE=assets_management
 DB_USERNAME=root
 DB_PASSWORD=your_password
 ```
 
 ### 4. Buat Database
-Buat database MySQL dengan nama `web_gudang`
+Buat database MySQL dengan nama `assets_management`
 
 ### 5. Jalankan Migrasi
 ```bash
